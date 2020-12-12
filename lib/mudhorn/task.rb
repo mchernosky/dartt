@@ -24,20 +24,24 @@ module Mudhorn
       end
     end
 
-    def get_end
-
-    end
-
     def end(date = nil)
       if date.nil?
-        @start + (@duration - 1)
+        get_date
       else
-        @end = date
+        set_end(date)
         self
       end
     end
 
     private
+
+    def set_end(date)
+      @end = date
+    end
+
+    def get_date
+      @start + (@duration - 1)
+    end
 
     def set_duration(days)
       @duration = days
