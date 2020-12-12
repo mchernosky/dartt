@@ -23,9 +23,15 @@ module Mudhorn
       end
     end
 
-    def set_duration(days)
-      @duration = days
-      self
+    def duration(days = nil)
+      if days.nil?
+        # The "get" operation.
+        @duration
+      else
+        # The "set" operation.
+        @duration = days
+        self
+      end
     end
 
     def get_end
