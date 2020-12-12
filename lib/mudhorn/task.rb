@@ -1,15 +1,21 @@
 module Mudhorn
   class Task
-    attr_reader :name, :start, :duration
+    attr_reader :name, :duration
 
     def initialize (name)
       @name = name
       self
     end
 
-    def set_start(date)
-      @start = date
-      self
+    def start(date = nil)
+      if date.nil?
+        # No date has been supplied, this is the "get" operation.
+        @start
+      else
+        # A date has been provided, this is the "set" operation.
+        @start = date
+        self
+      end
     end
 
     def set_duration(days)
