@@ -1,6 +1,6 @@
 module Mudhorn
   class Task
-    attr_reader :name, :duration
+    attr_reader :name
 
     def initialize (name)
       @name = name
