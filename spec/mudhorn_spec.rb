@@ -30,7 +30,7 @@ RSpec.describe Mudhorn do
                .start(Date.new(2020, 12, 10))
                .duration(1)
 
-    expect(task.get_end).to eq(Date.new(2020,12,10))
+    expect(task.end).to eq(Date.new(2020,12,10))
   end
 
   it "can get an end date that is not the start date" do
@@ -38,7 +38,7 @@ RSpec.describe Mudhorn do
                .start(Date.new(2020, 12, 10))
                .duration(2)
 
-    expect(task.get_end).to eq(Date.new(2020,12,11))
+    expect(task.end).to eq(Date.new(2020,12,11))
   end
 
   it "can get an end date that is in the next year" do
@@ -46,12 +46,12 @@ RSpec.describe Mudhorn do
                .start(Date.new(2020, 12, 31))
                .duration(5)
 
-    expect(task.get_end).to eq(Date.new(2021,1,4))
+    expect(task.end).to eq(Date.new(2021,1,4))
   end
 
   it "can be defined by an end date" do
     task = Mudhorn::Task.new("My Task")
-               .set_end(Date.new(2020,12,10))
+               .end(Date.new(2020,12,10))
                .duration(2)
 
     expect(task.start).to eq(Date.new(2020,12,9))

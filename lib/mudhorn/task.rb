@@ -25,12 +25,16 @@ module Mudhorn
     end
 
     def get_end
-      @start + (@duration - 1)
+
     end
 
-    def set_end(date)
-      @end = date
-      self
+    def end(date = nil)
+      if date.nil?
+        @start + (@duration - 1)
+      else
+        @end = date
+        self
+      end
     end
 
     private
