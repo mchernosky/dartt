@@ -9,27 +9,17 @@ module Mudhorn
 
     def start(date = nil)
       if date.nil?
-        # No date has been supplied, this is the "get" operation.
-        if @start.nil?
-          # No start date has been set, compute from the end date.
-          @end - (@duration - 1)
-        else
-          @start
-        end
+        get_start
       else
-        # A date has been provided, this is the "set" operation.
-        @start = date
-        self
+        set_start(date)
       end
     end
 
     def duration(days = nil)
       if days.nil?
-        # The "get" operation.
-        @duration
+        get_duration
       else
-        # The "set" operation.
-        @duration = days
+        set_duration(days)
         self
       end
     end
@@ -41,6 +31,30 @@ module Mudhorn
     def set_end(date)
       @end = date
       self
+    end
+
+    private
+
+    def set_duration(days)
+      @duration = days
+    end
+
+    def get_duration
+      @duration
+    end
+
+    def set_start(date)
+      @start = date
+      self
+    end
+
+    def get_start
+      if @start.nil?
+        # No start date has been set, compute from the end date.
+        @end - (@duration - 1)
+      else
+        @start
+      end
     end
 
   end
