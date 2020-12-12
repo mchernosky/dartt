@@ -10,7 +10,12 @@ module Mudhorn
     def start(date = nil)
       if date.nil?
         # No date has been supplied, this is the "get" operation.
-        @start
+        if @start.nil?
+          # No start date has been set, compute from the end date.
+          @end - (@duration - 1)
+        else
+          @start
+        end
       else
         # A date has been provided, this is the "set" operation.
         @start = date
@@ -32,8 +37,5 @@ module Mudhorn
       self
     end
 
-    def get_start
-      @end - (@duration - 1)
-    end
   end
 end

@@ -54,6 +54,6 @@ RSpec.describe Mudhorn do
                .set_end(Date.new(2020,12,10))
                .set_duration(2)
 
-    expect(task.get_start).to eq(Date.new(2020,12,9))
+    expect(task.start).to eq(Date.new(2020,12,9))
   end
 end
