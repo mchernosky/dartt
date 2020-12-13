@@ -39,7 +39,7 @@ module Mudhorn
       if @start.nil? or @duration.nil?
         @end = date
       else
-        raise TaskOverconstrained
+        raise TaskOverconstrained.new(@name, @start, date, @duration)
       end
     end
 
@@ -52,7 +52,7 @@ module Mudhorn
         @duration = days
       else
         # Both the start and the end are already defined -- this is an error.
-        raise TaskOverconstrained
+        raise TaskOverconstrained.new(@name, @start, @end, days)
       end
     end
 
@@ -64,7 +64,7 @@ module Mudhorn
       if @duration.nil? or @end.nil?
         @start = date
       else
-        raise TaskOverconstrained
+        raise TaskOverconstrained.new(@name, date, @end, @duration)
       end
       self
     end
