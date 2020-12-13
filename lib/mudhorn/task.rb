@@ -26,7 +26,7 @@ module Mudhorn
 
     def end(date = nil)
       if date.nil?
-        get_date
+        get_end
       else
         set_end(date)
         self
@@ -36,10 +36,14 @@ module Mudhorn
     private
 
     def set_end(date)
-      @end = date
+      if @start.nil? or @duration.nil?
+        @end = date
+      else
+        raise TaskOverconstrained
+      end
     end
 
-    def get_date
+    def get_end
       @start + (@duration - 1)
     end
 
