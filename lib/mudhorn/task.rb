@@ -61,7 +61,11 @@ module Mudhorn
     end
 
     def set_start(date)
-      @start = date
+      if @duration.nil? or @end.nil?
+        @start = date
+      else
+        raise TaskOverconstrained
+      end
       self
     end
 

@@ -74,4 +74,14 @@ RSpec.describe Mudhorn::Task do
       task.end(Date.new(2020,12,12))
     }.to raise_error(Mudhorn::TaskOverconstrained)
   end
+
+  it "raises an error when overconstrained by start date" do
+    task = Mudhorn::Task.new("My Task")
+               .end(Date.new(2020,12,10))
+               .duration(10)
+
+    expect {
+      task.start(Date.new(2020,12,8))
+    }.to raise_error(Mudhorn::TaskOverconstrained)
+  end
 end
