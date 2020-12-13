@@ -38,18 +38,18 @@ RSpec.describe Mudhorn::Task do
 
     it "can get an end date that is not the start date" do
       task = Mudhorn::Task.new("My Task")
-                 .start(Date.new(2020, 12, 10))
+                 .start(Date.new(2020, 12, 9))
                  .duration(2)
 
-      expect(task.end).to eq(Date.new(2020,12,11))
+      expect(task.end).to eq(Date.new(2020,12,10))
     end
 
     it "can get an end date that is in the next year" do
       task = Mudhorn::Task.new("My Task")
-                 .start(Date.new(2020, 12, 31))
+                 .start(Date.new(2020, 12, 28))
                  .duration(5)
 
-      expect(task.end).to eq(Date.new(2021,1,4))
+      expect(task.end).to eq(Date.new(2021,1,1))
     end
 
     it "can be defined by an end date" do
@@ -67,6 +67,15 @@ RSpec.describe Mudhorn::Task do
 
       expect(task.duration).to eq(2)
     end
+  end
+
+  describe "excluding days" do
+
+    it "skips a single date when it is excluded"
+
+    it "skips mulitple days when they are excluded"
+
+    it "skips weekend days when they are excluded"
   end
 
   describe "error handling" do
@@ -99,5 +108,9 @@ RSpec.describe Mudhorn::Task do
         task.start(Date.new(2020,12,8))
       }.to raise_error(Mudhorn::TaskOverconstrained)
     end
+
+    it "raises an error if the duraration is negative"
+    it "raises an error if the duration is zero"
+    it "raises an error when the start date is after the end date"
   end
 end
