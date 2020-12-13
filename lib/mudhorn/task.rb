@@ -57,7 +57,11 @@ module Mudhorn
     end
 
     def get_duration
-      @duration
+      if @duration.nil?
+        @end - @start
+      else
+        @duration
+      end
     end
 
     def set_start(date)
