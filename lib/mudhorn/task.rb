@@ -44,7 +44,12 @@ module Mudhorn
     end
 
     def set_duration(days)
-      @duration = days
+      if @start.nil? or @end.nil?
+        @duration = days
+      else
+        # Both the start and the end are already defined -- this is an error.
+        raise TaskOverconstrained
+      end
     end
 
     def get_duration

@@ -54,4 +54,14 @@ RSpec.describe Mudhorn::Task do
 
     expect(task.start).to eq(Date.new(2020,12,9))
   end
+
+  it "raises an error when overconstrained by duration" do
+    task = Mudhorn::Task.new("My Task")
+               .start(Date.new(2020,12,10))
+               .end(Date.new(2020,12,12))
+
+    expect {
+      task.duration(10)
+    }.to raise_error(Mudhorn::TaskOverconstrained)
+  end
 end
