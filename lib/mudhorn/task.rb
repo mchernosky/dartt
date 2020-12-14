@@ -2,6 +2,10 @@ module Mudhorn
   class Task
     attr_reader :name
 
+    def self.exclude(date)
+
+    end
+
     def initialize (name)
       @name = name
       self
@@ -44,7 +48,15 @@ module Mudhorn
     end
 
     def get_end
-      @start + (@duration - 1)
+      duration = 1
+      end_date = @start
+      while duration < @duration
+        end_date += 1
+        unless end_date.saturday? || end_date.sunday?
+          duration +=1
+        end
+      end
+      end_date
     end
 
     def set_duration(days)
