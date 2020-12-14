@@ -63,7 +63,7 @@ RSpec.describe Mudhorn::Task do
     it "can be defined by a start date and end date" do
       task = Mudhorn::Task.new("My Task")
           .start(Date.new(2020,12,8))
-          .end(Date.new(2020,12,10))
+          .end(Date.new(2020,12,9))
 
       expect(task.duration).to eq(2)
     end
@@ -79,7 +79,13 @@ RSpec.describe Mudhorn::Task do
       expect(task.end).to eq(Date.new(2020,12,14))
     end
 
-    it "skips the weekend when calcuating the duration"
+    it "skips the weekend when calcuating the duration" do
+      task = Mudhorn::Task.new("My Task")
+                 .start(Date.new(2020,12,11))
+                 .end(Date.new(2020,12,14))
+
+      expect(task.duration).to eq(2)
+    end
     it "skips the weekend when calcuating the start date"
     it "moves the start to the first weekday when starting on a weekend"
     # it "skips a single date when it is excluded" do

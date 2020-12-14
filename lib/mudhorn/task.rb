@@ -70,7 +70,7 @@ module Mudhorn
 
     def get_duration
       if @duration.nil?
-        @end - @start
+        @end - @start + 1
       else
         @duration
       end
