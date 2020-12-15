@@ -68,6 +68,14 @@ RSpec.describe Mudhorn::Task do
       expect(task.start).to eq(Date.new(2020,12,9))
     end
 
+    it "can get the end date after it is set" do
+      task = Mudhorn::Task.new("My Task")
+                 .end(Date.new(2020,12,10))
+                 .duration(2)
+
+      expect(task.end).to eq(Date.new(2020,12,10))
+    end
+
     it "can be defined by a start date and end date" do
       task = Mudhorn::Task.new("My Task")
           .start(Date.new(2020,12,8))

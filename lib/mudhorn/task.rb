@@ -48,11 +48,15 @@ module Mudhorn
     end
 
     def get_end
-      end_date = @start
-      (@duration - 1).times do
-        end_date = get_next_included_date(end_date)
+      unless @end.nil?
+        @end
+      else
+        end_date = @start
+        (@duration - 1).times do
+          end_date = get_next_included_date(end_date)
+        end
+        end_date
       end
-      end_date
     end
 
     def set_duration(days)
