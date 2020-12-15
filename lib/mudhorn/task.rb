@@ -81,6 +81,10 @@ module Mudhorn
     def set_start(date)
       if @duration.nil? or @end.nil?
         @start = date
+        # If the start falls on an excluded day, move it to an included day.
+        while excluded?(@start)
+          @start = get_next_included_date(@start)
+        end
       else
         raise TaskOverconstrained.new(@name, date, @end, @duration)
       end

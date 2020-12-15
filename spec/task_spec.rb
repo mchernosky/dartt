@@ -44,6 +44,14 @@ RSpec.describe Mudhorn::Task do
       expect(task.end).to eq(Date.new(2020,12,10))
     end
 
+    it "can get the start date after it is set" do
+      task = Mudhorn::Task.new("My Task")
+                 .start(Date.new(2020, 12, 9))
+                 .duration(2)
+
+      expect(task.start).to eq(Date.new(2020,12,9))
+    end
+
     it "can get an end date that is in the next year" do
       task = Mudhorn::Task.new("My Task")
                  .start(Date.new(2020, 12, 28))
@@ -93,7 +101,23 @@ RSpec.describe Mudhorn::Task do
 
       expect(task.start).to eq(Date.new(2020,12,11))
     end
-    it "moves the start to the first weekday when starting on a weekend"
+
+    it "moves the start to the first weekday when starting on a weekend" do
+      task = Mudhorn::Task.new("My Task")
+                 .start(Date.new(2020,12,12))
+                 .duration(2)
+
+      expect(task.start).to eq(Date.new(2020,12,14))
+    end
+
+    # it "moves the end to the first weekday when on a weekend" do
+    #   task = Mudhorn::Task.new("My Task")
+    #              .end(Date.new(2020,12,12))
+    #              .duration(2)
+    #
+    #   expect(task.end).to eq(Date.new(2020,12,14))
+    # end
+
     # it "skips a single date when it is excluded" do
     #   Mudhorn::Task.exclude(Date.new(2020,12,9))
     #   task = Mudhorn::Task.new("My Task")
