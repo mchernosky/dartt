@@ -135,9 +135,16 @@ RSpec.describe Mudhorn::Task do
       expect(task.end).to eq(Date.new(2020,12,10))
     end
 
-    it "skips multiple days when they are excluded"
+    it "skips multiple days when they are excluded" do
+      Mudhorn::Task.exclude(Date.new(2020,12,9))
+      Mudhorn::Task.exclude(Date.new(2020,12,10))
+      task = Mudhorn::Task.new("My Task")
+                 .start(Date.new(2020,12,8))
+                 .duration(2)
 
-    it "skips weekend days when they are excluded"
+      expect(task.end).to eq(Date.new(2020,12,11))
+    end
+
   end
 
   describe "error handling" do
