@@ -1,8 +1,8 @@
-require_relative 'lib/mudhorn/version'
+require_relative 'lib/dartt/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "mudhorn"
-  spec.version       = Mudhorn::VERSION
+  spec.name          = "dartt"
+  spec.version       = Dartt::VERSION
   spec.authors       = ["mchernosky"]
   spec.email         = ["matt@chernosky.net"]
 

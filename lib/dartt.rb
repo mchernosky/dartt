@@ -1,6 +1,6 @@
-require "mudhorn/version"
+require "dartt/version"
 
-module Mudhorn
+module Dartt
   class TaskOverconstrained < StandardError
     def initialize(name, start_date, end_date, duration)
       @name = name

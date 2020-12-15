@@ -1,4 +1,4 @@
-module Mudhorn
+module Dartt
   class Task
     attr_reader :name
     @@excluded_dates = []
