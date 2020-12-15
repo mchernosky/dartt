@@ -82,10 +82,6 @@ module Mudhorn
       end
     end
 
-    def excluded?(day)
-      day.saturday? or day.sunday?
-    end
-
     def set_start(date)
       if @duration.nil? or @end.nil?
         @start = date
@@ -98,11 +94,22 @@ module Mudhorn
     def get_start
       if @start.nil?
         # No start date has been set, compute from the end date.
-        @end - (@duration - 1)
+        duration = 1
+        start_date = @end
+        while duration < @duration
+          start_date -= 1
+          unless excluded?(start_date)
+            duration +=1
+          end
+        end
+        start_date
       else
         @start
       end
     end
 
+    def excluded?(day)
+      day.saturday? or day.sunday?
+    end
   end
 end

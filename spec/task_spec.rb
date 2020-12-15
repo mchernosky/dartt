@@ -86,7 +86,13 @@ RSpec.describe Mudhorn::Task do
 
       expect(task.duration).to eq(2)
     end
-    it "skips the weekend when calcuating the start date"
+    it "skips the weekend when calculating the start date" do
+      task = Mudhorn::Task.new("My Task")
+                 .end(Date.new(2020,12,14))
+                 .duration(2)
+
+      expect(task.start).to eq(Date.new(2020,12,11))
+    end
     it "moves the start to the first weekday when starting on a weekend"
     # it "skips a single date when it is excluded" do
     #   Mudhorn::Task.exclude(Date.new(2020,12,9))
