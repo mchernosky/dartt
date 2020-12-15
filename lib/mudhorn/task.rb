@@ -42,6 +42,9 @@ module Mudhorn
     def set_end(date)
       if @start.nil? or @duration.nil?
         @end = date
+        while excluded?(@end)
+          @end = get_next_included_date(@end)
+        end
       else
         raise TaskOverconstrained.new(@name, @start, date, @duration)
       end
