@@ -52,7 +52,7 @@ module Mudhorn
       end_date = @start
       while duration < @duration
         end_date += 1
-        unless end_date.saturday? || end_date.sunday?
+        unless excluded?(end_date)
           duration +=1
         end
       end
@@ -72,7 +72,7 @@ module Mudhorn
       if @duration.nil?
         duration = 0
         (@start..@end).each do |day|
-          unless day.saturday? or day.sunday?
+          unless excluded?(day)
             duration +=1
           end
         end
@@ -80,6 +80,10 @@ module Mudhorn
       else
         @duration
       end
+    end
+
+    def excluded?(day)
+      day.saturday? or day.sunday?
     end
 
     def set_start(date)
