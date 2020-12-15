@@ -126,14 +126,14 @@ RSpec.describe Mudhorn::Task do
       expect(task.end).to eq(Date.new(2020,12,14))
     end
 
-    # it "skips a single date when it is excluded" do
-    #   Mudhorn::Task.exclude(Date.new(2020,12,9))
-    #   task = Mudhorn::Task.new("My Task")
-    #              .start(Date.new(2020,12,8))
-    #              .duration(2)
-    #
-    #   expect(task.end).to eq(Date.new(2020,12,10))
-    # end
+    it "skips a single date when it is excluded" do
+      Mudhorn::Task.exclude(Date.new(2020,12,9))
+      task = Mudhorn::Task.new("My Task")
+                 .start(Date.new(2020,12,8))
+                 .duration(2)
+
+      expect(task.end).to eq(Date.new(2020,12,10))
+    end
 
     it "skips multiple days when they are excluded"
 

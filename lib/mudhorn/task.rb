@@ -1,9 +1,10 @@
 module Mudhorn
   class Task
     attr_reader :name
+    @@excluded_dates = []
 
     def self.exclude(date)
-
+      @@excluded_dates << date
     end
 
     def initialize (name)
@@ -112,7 +113,7 @@ module Mudhorn
     end
 
     def excluded?(day)
-      day.saturday? or day.sunday?
+      day.saturday? or day.sunday? or @@excluded_dates.include?(day)
     end
 
     def get_previous_included_date(date)
