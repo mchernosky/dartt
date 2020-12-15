@@ -112,8 +112,8 @@ module Mudhorn
       end
     end
 
-    def excluded?(day)
-      day.saturday? or day.sunday? or @@excluded_dates.include?(day)
+    def excluded?(date)
+      date.saturday? or date.sunday? or @@excluded_dates.include?(date)
     end
 
     def get_previous_included_date(date)
