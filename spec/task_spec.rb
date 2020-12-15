@@ -144,7 +144,7 @@ RSpec.describe Mudhorn::Task do
 
       expect(task.end).to eq(Date.new(2020,12,11))
     end
-
+    
   end
 
   describe "error handling" do

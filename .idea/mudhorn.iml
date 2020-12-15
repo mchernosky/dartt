@@ -19,5 +19,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.9.2, ruby-2.6.6-p146) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.9.1, ruby-2.6.6-p146) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.9.3, ruby-2.6.6-p146) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="victor (v0.3.2, ruby-2.6.6-p146) [gem]" level="application" />
   </component>
 </module>
