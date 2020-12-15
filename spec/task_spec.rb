@@ -79,7 +79,7 @@ RSpec.describe Mudhorn::Task do
       expect(task.end).to eq(Date.new(2020,12,14))
     end
 
-    it "skips the weekend when calcuating the duration" do
+    it "skips the weekend when calculating the duration" do
       task = Mudhorn::Task.new("My Task")
                  .start(Date.new(2020,12,11))
                  .end(Date.new(2020,12,14))

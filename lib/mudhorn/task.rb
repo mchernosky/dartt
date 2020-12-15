@@ -70,7 +70,13 @@ module Mudhorn
 
     def get_duration
       if @duration.nil?
-        @end - @start + 1
+        duration = 0
+        (@start..@end).each do |day|
+          unless day.saturday? or day.sunday?
+            duration +=1
+          end
+        end
+        duration
       else
         @duration
       end
