@@ -91,16 +91,20 @@ module Mudhorn
       self
     end
 
+    def get_previous_included_date(date)
+      loop do
+        date -= 1
+        break unless excluded?(date)
+      end
+      date
+    end
+
     def get_start
       if @start.nil?
         # No start date has been set, compute from the end date.
-        duration = 1
         start_date = @end
-        while duration < @duration
-          start_date -= 1
-          unless excluded?(start_date)
-            duration +=1
-          end
+        (@duration-1).times do
+          start_date = get_previous_included_date(start_date)
         end
         start_date
       else
