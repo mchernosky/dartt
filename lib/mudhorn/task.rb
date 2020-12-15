@@ -48,13 +48,9 @@ module Mudhorn
     end
 
     def get_end
-      duration = 1
       end_date = @start
-      while duration < @duration
-        end_date += 1
-        unless excluded?(end_date)
-          duration +=1
-        end
+      (@duration - 1).times do
+        end_date = get_next_included_date(end_date)
       end
       end_date
     end
@@ -91,14 +87,6 @@ module Mudhorn
       self
     end
 
-    def get_previous_included_date(date)
-      loop do
-        date -= 1
-        break unless excluded?(date)
-      end
-      date
-    end
-
     def get_start
       if @start.nil?
         # No start date has been set, compute from the end date.
@@ -115,5 +103,22 @@ module Mudhorn
     def excluded?(day)
       day.saturday? or day.sunday?
     end
+
+    def get_previous_included_date(date)
+      loop do
+        date -= 1
+        break unless excluded?(date)
+      end
+      date
+    end
+
+    def get_next_included_date(date)
+      loop do
+        date += 1
+        break unless excluded?(date)
+      end
+      date
+    end
+
   end
 end
