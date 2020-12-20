@@ -79,25 +79,4 @@ RSpec.describe Dartt::Graph do
     end
     expect(x).to eq(268.8)
   end
-
-  # it "can define another area" do
-  #   graph = Dartt::Graph.new(width: 1920, height: 1080)
-  #   graph.area(0,0,100,100) do
-  #     expect(w 50).to eq(960)
-  #   end
-  # end
-  #
-  # it "can define another area" do
-  #   graph = Dartt::Graph.new(width: 1920, height: 1080)
-  #   graph.area(0,0,50,50) do
-  #     expect(w 50).to eq(480)
-  #   end
-  # end
-  #
-  # it "can define another area a" do
-  #   graph = Dartt::Graph.new(width: 1920, height: 1080)
-  #   graph.area(0,0,10,100) do
-  #     expect(w 50).to eq(96)
-  #   end
-  # end
 end
