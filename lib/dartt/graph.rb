@@ -3,6 +3,7 @@ require 'victor'
 module Dartt
   # A class for calcluating the absolute position from a relative value
   # within an area defined by absolute position.
+  # TODO: Fix the issues with width/height vs end position.
   class Area
     def initialize(x_start, y_start, x_end, y_end)
       @x_start = x_start
@@ -38,7 +39,7 @@ module Dartt
 
       # Graph
       area(section_width, title_height, 100, 100 - axis_height) do
-        @svg.rect x: w(0), y: h(0), width: w(100), height: h(100), rx: 5, fill: '#999'
+        @svg.rect x: w(0), y: h(0), width: w(100 - section_width), height: h(100), rx: 5, fill: '#999'
       end
 
       # Axis
