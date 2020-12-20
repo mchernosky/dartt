@@ -26,17 +26,21 @@ module Dartt
       @x_end = width
       @y_end = height
 
-      title_height = 0.1
-      axis_height = 0.1
-      section_width = 0.2
+      title_height = 10
+      axis_height = 10
+      section_width = 20
 
       @svg = Victor::SVG.new viewBox: "0 0 #{@x_end} #{@y_end}", style: {background: '#ddd' }
       # Title
-      title = Area.new(0, 0, @x_end, title_height*@y_end)
-      @svg.rect x_start: title.w(0), y_start: title.h(0), x_end: title.w(100), y_end: title.h(100), rx: 5, fill: '#aaa'
+      area(0, 0, 100, 10) do
+        @svg.rect x: w(0), y: h(0), width: w(100), height: h(100), rx: 5, fill: '#aaa'
+      end
 
       # Graph
-      @svg.rect x_start: section_width*@x_end, y_start: title_height*@y_end, x_end: (1-section_width)*@x_end, y_end: (1-(title_height + axis_height))*@y_end, rx: 5, fill: '#999'
+      area(section_width, title_height, 100, 100 - axis_height) do
+        @svg.rect x: w(0), y: h(0), width: w(100), height: h(100), rx: 5, fill: '#999'
+      end
+
       # Axis
       @svg.rect x_start: section_width*@x_end, y_start: (1-axis_height)*@y_end, x_end: (1-section_width)*@x_end, y_end: axis_height*@y_end, rx: 5, fill: '#666'
     end
