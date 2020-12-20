@@ -17,7 +17,7 @@ module Dartt
     end
 
     def h(percent)
-      @y_start + (@y_end*percent)/100
+      @y_start + ((@y_end - @y_start)*percent).to_f/100
     end
   end
 
@@ -48,14 +48,18 @@ module Dartt
       @active_area.w(percent)
     end
 
-    def area(x, y, width, height, &block)
+    def h(percent)
+      @active_area.h(percent)
+    end
+
+    def area(x_start, y_start, x_end, y_end, &block)
       # Convert from percentage coordinates to absolute coordinates for
       # creating the area.
-      x = x*@x_end/100
-      width = width*@x_end/100
-      y = y*@y_end/100
-      height = height*@y_end/100
-      @active_area = Area.new(x,y,width,height)
+      x_start = x_start*@x_end/100
+      x_end = x_end*@x_end/100
+      y_start = y_start*@y_end/100
+      y_end = y_end*@y_end/100
+      @active_area = Area.new(x_start,y_start,x_end,y_end)
       if block_given?
         instance_eval(&block)
       end
