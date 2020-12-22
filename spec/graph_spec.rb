@@ -6,16 +6,13 @@ end
 
 RSpec.describe Dartt::Graph do
 
-  it "can create an image" do
-    svg = Dartt::Graph.new.render
-    expect(svg).to include("<svg")
-
-    save_svg(svg, "blank")
+  it "can create an svg chart" do
+    chart = Dartt::Graph.new("test").render
+    expect(chart).to include("<svg")
   end
 
-  it "can create an image with a rectangle" do
-    svg = Dartt::Graph.new.render
-
-    save_svg(svg,"rectangle")
+  it "can create an empty chart" do
+    chart = Dartt::Graph.new("Empty Chart").render
+    save_svg(chart,"empty")
   end
 end
