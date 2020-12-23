@@ -36,18 +36,19 @@ module Dartt
           line x1:"#{x_spacing*day}%", y1:"0%", x2:"#{x_spacing*day}%", y2:"100%", stroke:"#666"
         end
         # A sample task bar.
-        duration = 3
-        rect x:"0%", y:"0%", width:"#{duration*x_spacing}%", height:50, fill:"blue"
-        text "Planning", x:"#{duration*x_spacing/2}%", y:25, font_size: 24
+        # duration = 3
+        # rect x:"0%", y:"0%", width:"#{duration*x_spacing}%", height:50, fill:"blue"
+        # text "Planning", x:"#{duration*x_spacing/2}%", y:25, font_size: 24
+        draw_task("Planning2", 0, 1, 3, x_spacing, 'blue')
         # Another sample task bar.
         start = 5
         duration = 2
         row = 1
-        draw_task("Demo2", duration, row, start, x_spacing)
+        draw_task("Demo2", row, start, duration, x_spacing, 'red')
         start = 7
         duration = 5
         row = 2
-        draw_task("Integration", duration, row, start, x_spacing)
+        draw_task("Integration", row, start, duration, x_spacing, "green")
       end
 
       # Axis
@@ -59,9 +60,9 @@ module Dartt
 
     private
 
-    def draw_task(name, duration, row, start, x_spacing)
-      rect x: "#{(start - 1) * x_spacing}%", y: row * 50, width: "#{duration * x_spacing}%", height: 50, fill: "green"
-      text name, x: "#{(start - 1) * x_spacing + duration * x_spacing / 2}%", y: row * 50 + (50 / 2), font_size: 24
+    def draw_task(name, row, start_day, duration, x_spacing, color)
+      rect x: "#{(start_day - 1) * x_spacing}%", y: row * 50, width: "#{duration * x_spacing}%", height: 50, fill: color, rx: 5
+      text name, x: "#{(start_day - 1) * x_spacing + duration * x_spacing / 2}%", y: row * 50 + (50 / 2), font_size: 24
     end
 
   end
