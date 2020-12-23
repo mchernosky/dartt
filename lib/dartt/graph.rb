@@ -2,12 +2,15 @@ require 'victor'
 require 'pp'
 
 module Dartt
-
   class Graph < Victor::SVG
-    def initialize (title, width: 1920, height: 1080)
+
+    def initialize (title, total_days, width: 1920, height: 1080)
       @title = title
+      @total_days = total_days
       @width = width
       @height = height
+
+      @day_width = 100.0/@total_days
 
       title_height = 10
       axis_height = 10
@@ -29,26 +32,14 @@ module Dartt
       svg x:"#{section_width}%", y:"#{title_height}%", width:"#{100-section_width}%", height:"#{100-title_height-axis_height}%" do
         #rect width:"100%", height:"100%", rx: 10, fill: '#aaa'
         # Draw the gridlines.
-        days = 20
-        x_spacing = 100.0/days
-        (1..(days-1)).each do |day|
-          puts x_spacing
-          line x1:"#{x_spacing*day}%", y1:"0%", x2:"#{x_spacing*day}%", y2:"100%", stroke:"#666"
+        (1..(@total_days-1)).each do |day|
+          line x1:"#{@day_width*day}%", y1:"0%", x2:"#{@day_width*day}%", y2:"100%", stroke:"#666"
         end
-        # A sample task bar.
-        # duration = 3
-        # rect x:"0%", y:"0%", width:"#{duration*x_spacing}%", height:50, fill:"blue"
-        # text "Planning", x:"#{duration*x_spacing/2}%", y:25, font_size: 24
-        draw_task("Planning2", 0, 1, 3, x_spacing, 'blue')
-        # Another sample task bar.
-        start = 5
-        duration = 2
-        row = 1
-        draw_task("Demo2", row, start, duration, x_spacing, 'red')
-        start = 7
-        duration = 5
-        row = 2
-        draw_task("Integration", row, start, duration, x_spacing, "green")
+        # Create some sample task bars.
+        draw_task("Planning2", 0, 1, 3, @day_width, 'blue')
+        draw_task("Demo2", 1, 5, 2, @day_width, 'red')
+        draw_task("Integration", 2, 7, 5, @day_width, "green")
+        draw_task("Planning", 3, 1, 10, @day_width, "blue")
       end
 
       # Axis
@@ -61,8 +52,9 @@ module Dartt
     private
 
     def draw_task(name, row, start_day, duration, x_spacing, color)
-      rect x: "#{(start_day - 1) * x_spacing}%", y: row * 50, width: "#{duration * x_spacing}%", height: 50, fill: color, rx: 5
-      text name, x: "#{(start_day - 1) * x_spacing + duration * x_spacing / 2}%", y: row * 50 + (50 / 2), font_size: 24
+      task_height = 50
+      rect x: "#{(start_day - 1) * x_spacing}%", y: row * task_height, width: "#{duration * x_spacing}%", height: task_height, fill: color, rx: 5
+      text name, x: "#{(start_day - 1) * x_spacing + duration * x_spacing / 2}%", y: row * task_height + (task_height / 2), font_size: 24
     end
 
   end

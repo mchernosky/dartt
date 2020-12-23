@@ -7,12 +7,12 @@ end
 RSpec.describe Dartt::Graph do
 
   it "can create an svg chart" do
-    chart = Dartt::Graph.new("test").render
+    chart = Dartt::Graph.new("test", 10).render
     expect(chart).to include("<svg")
   end
 
   it "can create an empty chart" do
-    chart = Dartt::Graph.new("Empty Chart").render
+    chart = Dartt::Graph.new("Empty Chart", 20).render
     save_svg(chart,"empty")
   end
 end
