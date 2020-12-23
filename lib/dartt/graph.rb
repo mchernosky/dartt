@@ -27,8 +27,28 @@ module Dartt
 
         # Graph
       svg x:"#{section_width}%", y:"#{title_height}%", width:"#{100-section_width}%", height:"#{100-title_height-axis_height}%" do
-        rect width:"100%", height:"100%", rx: 10, fill: '#aaa'
-        text "Graph", x: "50%", y: "50%"
+        #rect width:"100%", height:"100%", rx: 10, fill: '#aaa'
+        # Draw the gridlines.
+        days = 20
+        x_spacing = 100.0/days
+        (1..(days-1)).each do |day|
+          puts x_spacing
+          line x1:"#{x_spacing*day}%", y1:"0%", x2:"#{x_spacing*day}%", y2:"100%", stroke:"#666"
+        end
+        # A sample task bar.
+        duration = 3
+        rect x:"0%", y:"0%", width:"#{duration*x_spacing}%", height:50, fill:"blue"
+        text "Planning", x:"#{duration*x_spacing/2}%", y:25, font_size: 24
+        # Another sample task bar.
+        start = 5
+        duration = 2
+        rect x:"#{(start-1)*x_spacing}%", y:50, width:"#{duration*x_spacing}%", height:50, fill:"red"
+        text "Demo", x:"#{(start-1)*x_spacing + duration*x_spacing/2}%", y:75, font_size: 24
+        # Another sample task bar.
+        start = 7
+        duration = 5
+        rect x:"#{(start-1)*x_spacing}%", y:100, width:"#{duration*x_spacing}%", height:50, fill:"green"
+        text "Demo", x:"#{(start-1)*x_spacing + duration*x_spacing/2}%", y:125, font_size: 24
       end
 
       # Axis
