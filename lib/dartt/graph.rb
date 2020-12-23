@@ -42,13 +42,12 @@ module Dartt
         # Another sample task bar.
         start = 5
         duration = 2
-        rect x:"#{(start-1)*x_spacing}%", y:50, width:"#{duration*x_spacing}%", height:50, fill:"red"
-        text "Demo", x:"#{(start-1)*x_spacing + duration*x_spacing/2}%", y:75, font_size: 24
-        # Another sample task bar.
+        row = 1
+        draw_task("Demo2", duration, row, start, x_spacing)
         start = 7
         duration = 5
-        rect x:"#{(start-1)*x_spacing}%", y:100, width:"#{duration*x_spacing}%", height:50, fill:"green"
-        text "Demo", x:"#{(start-1)*x_spacing + duration*x_spacing/2}%", y:125, font_size: 24
+        row = 2
+        draw_task("Integration", duration, row, start, x_spacing)
       end
 
       # Axis
@@ -56,6 +55,13 @@ module Dartt
         rect width:"100%", height:"100%", rx: 10, fill: 'blue'
         text "Axis", x: "50%", y: "50%"
       end
+    end
+
+    private
+
+    def draw_task(name, duration, row, start, x_spacing)
+      rect x: "#{(start - 1) * x_spacing}%", y: row * 50, width: "#{duration * x_spacing}%", height: 50, fill: "green"
+      text name, x: "#{(start - 1) * x_spacing + duration * x_spacing / 2}%", y: row * 50 + (50 / 2), font_size: 24
     end
 
   end
