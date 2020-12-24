@@ -55,9 +55,12 @@ module Dartt
     private
 
     def draw_task(name, row, start_day, duration)
+      task_vertical_margin = 5
+      task_horizontal_margin = 2
+      task_font_size = 24
       task_height = 50
-      rect x: "#{(start_day - 1) * @day_width}%", y: row * task_height, width: "#{duration * @day_width}%", height: task_height, fill: "green", rx: 5
-      text name, x: "#{(start_day - 1) * @day_width + duration * @day_width / 2}%", y: row * task_height + (task_height / 2), font_size: 24
+      rect x: "#{(start_day - 1) * @day_width}%", y: (row * task_height) + task_vertical_margin, width: "#{duration * @day_width}%", height: task_height - task_vertical_margin, fill: "green", rx: 5
+      text name, x: "#{(start_day - 1) * @day_width + duration * @day_width / 2}%", y: row * task_height + (task_height / 2), font_size: task_font_size
     end
 
   end
