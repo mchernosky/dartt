@@ -12,6 +12,16 @@ module Dartt
 
       @day_width = 100.0/@total_days
 
+      @config = {
+          :task => {
+              # Pixels
+              :height => 50,
+              :vertical_margin => 2,
+              :horizontal_margin => 2,
+              :font_size => 24
+          }
+      }
+
       # TODO: Turn these into config options in some hash/yaml.
       title_height = 10
       axis_height = 10
@@ -55,12 +65,15 @@ module Dartt
     private
 
     def draw_task(name, row, start_day, duration)
-      task_vertical_margin = 5
-      task_horizontal_margin = 2
-      task_font_size = 24
-      task_height = 50
-      rect x: "#{(start_day - 1) * @day_width}%", y: (row * task_height) + task_vertical_margin, width: "#{duration * @day_width}%", height: task_height - task_vertical_margin, fill: "green", rx: 5
-      text name, x: "#{(start_day - 1) * @day_width + duration * @day_width / 2}%", y: row * task_height + (task_height / 2), font_size: task_font_size
+      task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@width*100
+
+      x = ((start_day - 1) * @day_width) + task_horizontal_margin_percent
+      y = (row * @config[:task][:height]) + @config[:task][:vertical_margin]
+      width = (duration * @day_width) - 2*task_horizontal_margin_percent
+      height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
+
+      rect x: "#{x}%", y: y, width: "#{width}%", height: height, fill: "green", rx: 5
+      text name, x: "#{x + width/2}%", y: y + height/2, font_size: @config[:task][:font_size]
     end
 
   end
