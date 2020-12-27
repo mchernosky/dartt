@@ -90,11 +90,16 @@ module Dartt
     def draw_milestone(name, row, day)
       milestone_height = @config[:milestone][:height] - 2*@config[:milestone][:vertical_margin]
       milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
-      x = (day * @day_width_px) - (milestone_side/2)
-      y = ((row * @config[:task][:height]) + (@config[:task][:height]/2)) - (milestone_side/2)
+
+      milestone_center_x = day * @day_width_px
+      milestone_center_y = ((row * @config[:task][:height]) + (@config[:task][:height]/2))
+      x = milestone_center_x - milestone_side/2
+      y = milestone_center_y - milestone_side/2
+
+      # Draw the milestone and rotate it to form a diamond.
       rect x:x, y:y, width:milestone_side, height:milestone_side,
            fill: 'blue',
-           transform: "rotate (45 #{day * @day_width_px} #{((row * @config[:task][:height]) + (@config[:task][:height]/2))})",
+           transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
            rx: @config[:milestone][:rounding]
     end
 
