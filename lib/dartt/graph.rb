@@ -53,6 +53,8 @@ module Dartt
         draw_task("Demo2", 1, 5, 2)
         draw_task("Integration", 2, 7, 5)
         draw_task("Planning", 3, 1, 10)
+
+        draw_milestone("Delivery 1", 0, 1)
       end
 
       # Axis
@@ -74,6 +76,12 @@ module Dartt
 
       rect x: "#{x}%", y: y, width: "#{width}%", height: height, fill: "green", rx: 5
       text name, x: "#{x + width/2}%", y: y + height/2, font_size: @config[:task][:font_size]
+    end
+
+    def draw_milestone(name, row, day)
+      task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@width*100
+
+      rect x:0, y:0, width:35.4, height:35.4, transform: "translate (25), rotate (45)", fill: 'blue', rx: 5
     end
 
   end
