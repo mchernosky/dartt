@@ -19,6 +19,13 @@ module Dartt
               :vertical_margin => 2,
               :horizontal_margin => 2,
               :font_size => 24
+          },
+          :milestone => {
+            # Pixels
+            :height => 50,
+            :vertical_margin => 2,
+            :rounding => 5,
+            :font_size => 24
           }
       }
 
@@ -27,7 +34,9 @@ module Dartt
       axis_height = 10
       section_width = 20
 
-      # Draw the parent SVG.
+      @day_width_px = ((100-section_width).to_f/100)*@width/@total_days
+
+          # Draw the parent SVG.
       super viewBox: "0 0 #{@width} #{@height}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
 
       # Draw the title.
@@ -54,7 +63,7 @@ module Dartt
         draw_task("Integration", 2, 7, 5)
         draw_task("Planning", 3, 1, 10)
 
-        draw_milestone("Delivery 1", 0, 1)
+        draw_milestone("Delivery 1", 1, 2)
       end
 
       # Axis
@@ -79,9 +88,14 @@ module Dartt
     end
 
     def draw_milestone(name, row, day)
-      task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@width*100
-
-      rect x:0, y:0, width:35.4, height:35.4, transform: "translate (25), rotate (45)", fill: 'blue', rx: 5
+      milestone_height = @config[:milestone][:height] - 2*@config[:milestone][:vertical_margin]
+      milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
+      x = (day * @day_width_px) - (milestone_side/2)
+      y = ((row * @config[:task][:height]) + (@config[:task][:height]/2)) - (milestone_side/2)
+      rect x:x, y:y, width:milestone_side, height:milestone_side,
+           fill: 'blue',
+           transform: "rotate (45 #{day * @day_width_px} #{((row * @config[:task][:height]) + (@config[:task][:height]/2))})",
+           rx: @config[:milestone][:rounding]
     end
 
   end
