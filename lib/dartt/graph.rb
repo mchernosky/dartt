@@ -82,9 +82,10 @@ module Dartt
       milestone_height = @config[:milestone][:height] - 2*@config[:milestone][:vertical_margin]
       milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
 
-      section_width_px = @config[:section_width_percent].to_f*@config[:width]/100
+      section_width_px = width_to_px(@config[:section_width_percent])
+      title_height_px = height_to_px(@config[:title_height_percent])
+
       milestone_center_x = section_width_px + day * @day_width_px
-      title_height_px = @config[:title_height_percent].to_f*@config[:height]/100
       milestone_center_y = title_height_px + ((row * @config[:task][:height]) + (@config[:task][:height]/2))
       x = milestone_center_x - milestone_side/2
       y = milestone_center_y - milestone_side/2
@@ -96,5 +97,14 @@ module Dartt
            rx: @config[:milestone][:rounding]
     end
 
+    private
+
+    def width_to_px(percent)
+      percent.to_f*@config[:width]/100
+    end
+
+    def height_to_px(percent)
+      percent.to_f*@config[:height]/100
+    end
   end
 end
