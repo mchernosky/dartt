@@ -45,17 +45,12 @@ module Dartt
         rect width:"100%", height:"100%", rx: 10, fill: '#666'
         text "Sections", x: "50%", y: "50%"
       end
-
-        # Graph
-      @graph = svg x:@config[:section_width], y:@config[:title_height], width:@config[:width] - @config[:section_width], height:@config[:height] - @config[:title_height]-@config[:axis_height] do
-        #rect width:"100%", height:"100%", rx: 10, fill: '#aaa'
-        # Draw the gridlines.
-        (1..(@total_days-1)).each do |day|
-          line x1:"#{@day_width*day}%", y1:"0%", x2:"#{@day_width*day}%", y2:"100%", stroke:"#666"
-        end
-
+      # Grid lines
+      x_position = @config[:section_width]
+      (1..(@total_days-1)).each do |day|
+        x_position += @day_width_px
+        line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:"#666"
       end
-
       # Axis
       svg x:@config[:section_width], y:@config[:height] - @config[:title_height], width:@config[:width] - @config[:section_width], height:@config[:axis_height] do
         rect width:"100%", height:"100%", rx: 10, fill: 'blue'
@@ -69,8 +64,8 @@ module Dartt
       x = @config[:section_width] + ((start_day - 1) * @day_width_px) + @config[:task][:horizontal_margin]
       y = @config[:title_height]
       y += (row * @config[:task][:height]) + @config[:task][:vertical_margin]
-      # TODO: Fix width calculation -- convert everyting to pixels.
-      width = (duration * @day_width_px) - @config[:task][:horizontal_margin]
+
+      width = (duration * @day_width_px) - 2* @config[:task][:horizontal_margin]
       height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
 
       rect x: x, y: y, width: width, height: height, fill: "green", rx: 5
