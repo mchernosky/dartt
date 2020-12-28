@@ -14,16 +14,18 @@ RSpec.describe Dartt::Graph do
   it "can create an empty chart" do
     chart = Dartt::Graph.new("Empty Chart", 20)
     # Create some sections.
-    chart.draw_section("Section 1", 0, 1)
-    chart.draw_section("Section 2", 4, 5)
+    chart.add_section("Section 1", 0, 1)
+    chart.add_section("Section 2", 2, 2)
+    chart.add_section("Section 3", 3, 5)
+
 
     # Create some sample task bars.
-    chart.draw_task("Planning 2", 0, 1, 3)
-    chart.draw_task("Demo 2", 4, 5, 2)
-    chart.draw_task("Integration", 2, 7, 5)
-    chart.draw_task("Planning", 3, 1, 10)
+    chart.add_task("Planning 2", 1, 3)
+    chart.add_task("Demo 2", 5, 2)
+    chart.add_task("Integration", 7, 5)
+    chart.add_task("Planning", 1, 10)
 
-    chart.draw_milestone("Delivery 1", 1, 3)
+    # chart.draw_milestone("Delivery 1", 1, 3)
     save_svg(chart.render,"empty")
   end
 end

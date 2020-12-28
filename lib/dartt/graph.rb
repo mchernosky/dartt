@@ -9,13 +9,16 @@ module Dartt
       @total_days = total_days
 
       @day_width = 100.0/@total_days
-
+      @sections = []
+      @tasks = []
       @config = {
           :width => 1920,
           :height => 1080,
           :title_height => 108,
           :section_width => 300,
           :section_margin => 20,
+          :section_first_color => '#EFFC7F',
+          :section_second_color => 'white',
           :axis_height => 108,
           :task => {
               :height => 50,
@@ -50,12 +53,6 @@ module Dartt
         text @title, x: "50%", y: "50%", fill: "black"
       end
 
-      # Grid lines
-      x_position = @config[:section_width]
-      (1..(@total_days-1)).each do |day|
-        x_position += @day_width_px
-        line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:"#666"
-      end
       # Axis
       svg x:@config[:section_width], y:@config[:height] - @config[:title_height], width:@config[:width] - @config[:section_width], height:@config[:axis_height] do
         rect width:"100%", height:"100%", rx: 10, fill: 'blue'
@@ -63,11 +60,42 @@ module Dartt
       end
     end
 
-    def draw_section(name, start_row, end_row)
+    def add_section(name, start_row, end_row)
+      @sections << {:name => name, :start_row => start_row, :end_row => end_row}
+    end
+
+    def add_task(name, start_day, duration)
+      @tasks << {:name => name, :start_day => start_day, :duration => duration}
+    end
+
+    def render
+      #Sections
+      @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
+      # Grid lines
+      x_position = @config[:section_width]
+      (1..(@total_days-1)).each do |day|
+        x_position += @day_width_px
+        line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:"#666"
+      end
+      #Tasks
+      @tasks.each_with_index do |t, i|
+        draw_task(t[:name], i, t[:start_day], t[:duration])
+      end
+      # TODO: Draw milestones. Use milestone and task types for this.
+      super
+    end
+
+    private
+
+    def draw_section(index, name, start_row, end_row)
       y = @config[:title_height] + start_row*@config[:task][:height]
       height = (end_row-start_row+1)*@config[:task][:height]
-      rect x: "0%", y: y, width: "100%", height: height, fill: '#EFFC7F'
-      text name, x:@config[:section_marginK], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
+      fill = @config[:section_first_color]
+      if index % 2 == 1
+        fill = @config[:section_second_color]
+      end
+      rect x: "0%", y: y, width: "100%", height: height, fill: fill
+      text name, x:@config[:section_margin], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
     end
 
     def draw_task(name, row, start_day, duration)
@@ -109,8 +137,5 @@ module Dartt
       text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size],
            fill: @config[:milestone][:font_color], text_anchor: 'start'
     end
-
-    # TODO: Only add tasks and sections and then draw them all during the render stage.
-    # TODO: This will fix sections being drawn on top of gridlines.
   end
 end
