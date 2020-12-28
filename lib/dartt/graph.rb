@@ -90,7 +90,6 @@ module Dartt
            transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
            rx: @config[:milestone][:rounding]
 
-      # TODO: Fix text placement.
       text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size], fill: 'black', text_anchor: 'start'
     end
 
