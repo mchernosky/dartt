@@ -14,11 +14,12 @@ module Dartt
           :width => 1920,
           :height => 1080,
           :title_height => 108,
-          :section_width => 384,
+          :section_width => 300,
+          :section_margin => 20,
           :axis_height => 108,
           :task => {
               :height => 50,
-              :vertical_margin => 2,
+              :vertical_margin => 3,
               :horizontal_margin => 3,
               :rounding => 5,
               :font_size => 20,
@@ -49,11 +50,6 @@ module Dartt
         text @title, x: "50%", y: "50%", fill: "black"
       end
 
-      # Sections
-      svg x:"0%", y:@config[:title_height], width:@config[:section_width], height:@config[:height] - @config[:title_height] do
-        rect width:"100%", height:"100%", rx: 10, fill: '#666'
-        text "Sections", x: "50%", y: "50%"
-      end
       # Grid lines
       x_position = @config[:section_width]
       (1..(@total_days-1)).each do |day|
@@ -65,6 +61,13 @@ module Dartt
         rect width:"100%", height:"100%", rx: 10, fill: 'blue'
         text "Axis", x: "50%", y: "50%"
       end
+    end
+
+    def draw_section(name, start_row, end_row)
+      y = @config[:title_height] + start_row*@config[:task][:height]
+      height = (end_row-start_row+1)*@config[:task][:height]
+      rect x: "0%", y: y, width: "100%", height: height, fill: '#EFFC7F'
+      text name, x:@config[:section_marginK], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
     end
 
     def draw_task(name, row, start_day, duration)
@@ -107,5 +110,7 @@ module Dartt
            fill: @config[:milestone][:font_color], text_anchor: 'start'
     end
 
+    # TODO: Only add tasks and sections and then draw them all during the render stage.
+    # TODO: This will fix sections being drawn on top of gridlines.
   end
 end
