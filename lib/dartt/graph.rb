@@ -13,18 +13,16 @@ module Dartt
       @config = {
           :width => 1920,
           :height => 1080,
-          :title_height_percent => 10,
-          :section_width_percent => 20,
-          :axis_height_percent => 10,
+          :title_height => 108,
+          :section_width => 384,
+          :axis_height => 108,
           :task => {
-              # Pixels
               :height => 50,
               :vertical_margin => 2,
               :horizontal_margin => 2,
               :font_size => 20
           },
           :milestone => {
-            # Pixels
             :height => 50,
             :vertical_margin => 2,
             :rounding => 5,
@@ -32,7 +30,7 @@ module Dartt
           }
       }
 
-      @day_width_px = ((100-@config[:section_width_percent]).to_f/100)*@config[:width]/@total_days
+      @day_width_px = (@config[:width] - @config[:section_width]) / @total_days
 
           # Draw the parent SVG.
       super viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
@@ -43,13 +41,13 @@ module Dartt
       end
 
       # Sections
-      svg x:"0%", y:"#{@config[:title_height_percent]}%", width:"#{@config[:section_width_percent]}%", height:"#{100-@config[:title_height_percent]}%" do
+      svg x:"0%", y:@config[:title_height], width:@config[:section_width], height:@config[:height] - @config[:title_height] do
         rect width:"100%", height:"100%", rx: 10, fill: '#666'
         text "Sections", x: "50%", y: "50%"
       end
 
         # Graph
-      @graph = svg x:"#{@config[:section_width_percent]}%", y:"#{@config[:title_height_percent]}%", width:"#{100-@config[:section_width_percent]}%", height:"#{100-@config[:title_height_percent]-@config[:axis_height_percent]}%" do
+      @graph = svg x:@config[:section_width], y:@config[:title_height], width:@config[:width] - @config[:section_width], height:@config[:height] - @config[:title_height]-@config[:axis_height] do
         #rect width:"100%", height:"100%", rx: 10, fill: '#aaa'
         # Draw the gridlines.
         (1..(@total_days-1)).each do |day|
@@ -59,7 +57,7 @@ module Dartt
       end
 
       # Axis
-      svg x:"#{@config[:section_width_percent]}%", y:"#{100-@config[:title_height_percent]}%", width:"#{100-@config[:section_width_percent]}%", height:"#{@config[:title_height_percent]}%" do
+      svg x:@config[:section_width], y:@config[:height] - @config[:title_height], width:@config[:width] - @config[:section_width], height:@config[:axis_height] do
         rect width:"100%", height:"100%", rx: 10, fill: 'blue'
         text "Axis", x: "50%", y: "50%"
       end
@@ -68,22 +66,23 @@ module Dartt
     def draw_task(name, row, start_day, duration)
       task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@config[:width]*100
 
-      x = @config[:section_width_percent] + ((start_day - 1) * @day_width) + task_horizontal_margin_percent
-      y = @config[:title_height_percent].to_f*@config[:height]/100
+      x = @config[:section_width] + ((start_day - 1) * @day_width_px) + @config[:task][:horizontal_margin]
+      y = @config[:title_height]
       y += (row * @config[:task][:height]) + @config[:task][:vertical_margin]
-      width = (duration * @day_width) - 2*task_horizontal_margin_percent
+      # TODO: Fix width calculation -- convert everyting to pixels.
+      width = (duration * @day_width_px) - @config[:task][:horizontal_margin]
       height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
 
-      rect x: "#{x}%", y: y, width: "#{width}%", height: height, fill: "green", rx: 5
-      text name, x: "#{x + width/2}%", y: y + height/2, font_size: @config[:task][:font_size]
+      rect x: x, y: y, width: width, height: height, fill: "green", rx: 5
+      text name, x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size]
     end
 
     def draw_milestone(name, row, day)
       milestone_height = @config[:milestone][:height] - 2*@config[:milestone][:vertical_margin]
       milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
 
-      section_width_px = width_to_px(@config[:section_width_percent])
-      title_height_px = height_to_px(@config[:title_height_percent])
+      section_width_px = @config[:section_width]
+      title_height_px = @config[:title_height]
 
       milestone_center_x = section_width_px + day * @day_width_px
       milestone_center_y = title_height_px + ((row * @config[:task][:height]) + (@config[:task][:height]/2))
