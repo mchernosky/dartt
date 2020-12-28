@@ -94,14 +94,5 @@ module Dartt
       text name, x: x, y: milestone_center_y, font_size: @config[:task][:font_size], fill: 'black', text_anchor: 'left'
     end
 
-    private
-
-    def width_to_px(percent)
-      percent.to_f*@config[:width]/100
-    end
-
-    def height_to_px(percent)
-      percent.to_f*@config[:height]/100
-    end
   end
 end
