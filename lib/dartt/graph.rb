@@ -19,14 +19,23 @@ module Dartt
           :task => {
               :height => 50,
               :vertical_margin => 2,
-              :horizontal_margin => 2,
-              :font_size => 20
+              :horizontal_margin => 3,
+              :rounding => 5,
+              :font_size => 20,
+              :font_color => "#003470",
+              :fill => "#77B7FF",
+              :line => "#0D57AB",
+              :line_weight => 3,
           },
           :milestone => {
             :height => 50,
             :vertical_margin => 2,
-            :rounding => 5,
-            :font_size => 20
+            :rounding => 4,
+            :font_size => 20,
+            :font_color => "#003470",
+            :fill => "#77B7FF",
+            :line => "#0D57AB",
+            :line_weight => 3,
           }
       }
 
@@ -68,8 +77,10 @@ module Dartt
       width = (duration * @day_width_px) - 2* @config[:task][:horizontal_margin]
       height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
 
-      rect x: x, y: y, width: width, height: height, fill: "green", rx: 5
-      text name, x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size]
+      rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
+           stroke: @config[:task][:line], stroke_width: @config[:task][:line_weight]
+      text name, x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
+           fill: @config[:task][:font_color]
     end
 
     def draw_milestone(name, row, day)
@@ -86,11 +97,14 @@ module Dartt
 
       # Draw the milestone and rotate it to form a diamond.
       rect x:x, y:y, width:milestone_side, height:milestone_side,
-           fill: 'blue',
+           fill: @config[:milestone][:fill],
+           stroke: @config[:milestone][:line],
+           stroke_width: @config[:milestone][:line_weight],
            transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
            rx: @config[:milestone][:rounding]
 
-      text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size], fill: 'black', text_anchor: 'start'
+      text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size],
+           fill: @config[:milestone][:font_color], text_anchor: 'start'
     end
 
   end
