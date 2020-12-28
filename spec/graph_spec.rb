@@ -12,7 +12,7 @@ RSpec.describe Dartt::Graph do
   end
 
   it "can create an empty chart" do
-    chart = Dartt::Graph.new("Empty Chart", 20)
+    chart = Dartt::Graph.new("The Schedule", 20)
     # Create some sections.
     chart.add_section("Section 1", 0, 1)
     chart.add_section("Section 2", 2, 2)

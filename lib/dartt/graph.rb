@@ -23,13 +23,13 @@ module Dartt
           :task => {
               :height => 50,
               :vertical_margin => 3,
-              :horizontal_margin => 3,
+              :horizontal_margin => 0,
               :rounding => 5,
               :font_size => 20,
               :font_color => "#003470",
               :fill => "#77B7FF",
               :line => "#0D57AB",
-              :line_weight => 3,
+              :line_weight => 2,
           },
           :milestone => {
             :height => 50,
@@ -52,12 +52,6 @@ module Dartt
       svg x:"0%", y:"0%", width:"100%", height:"10%" do
         text @title, x: "50%", y: "50%", fill: "black"
       end
-
-      # Axis
-      svg x:@config[:section_width], y:@config[:height] - @config[:title_height], width:@config[:width] - @config[:section_width], height:@config[:axis_height] do
-        rect width:"100%", height:"100%", rx: 10, fill: 'blue'
-        text "Axis", x: "50%", y: "50%"
-      end
     end
 
     def add_section(name, start_row, end_row)
@@ -73,9 +67,9 @@ module Dartt
       @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
       # Grid lines
       x_position = @config[:section_width]
-      (1..(@total_days-1)).each do |day|
-        x_position += @day_width_px
+      (0..@total_days).each do |day|
         line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:"#666"
+        x_position += @day_width_px
       end
       #Tasks
       @tasks.each_with_index do |t, i|
