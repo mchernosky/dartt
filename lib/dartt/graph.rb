@@ -11,9 +11,9 @@ module Dartt
         :title_height => 108,
         :section_width => 300,
         :section_margin => 20,
-        :section_first_color => '#EFFC7F',
+        :section_first_color => '#FFFDA2',
         :section_second_color => 'white',
-        :axis_height => 100,
+        :axis_height => 80,
         :week_height => 32,
         :axis_fill_color => '#D7D7D7',
         :axis_line_color => 'white',
@@ -39,7 +39,7 @@ module Dartt
             :font_color => "#003470",
             :fill => "#77B7FF",
             :line => "#0D57AB",
-            :line_weight => 3,
+            :line_weight => 2,
         }
     }
 
