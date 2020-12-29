@@ -29,20 +29,20 @@ RSpec.describe Dartt::Graph do
     save_svg(chart.render,"sections")
   end
 
-  it "can add date-based tasks" do
-    chart = Dartt::Graph.new("Date-based Chart", Date.new(2021, 1, 4), Date.new(2021, 1, 24))
+  it "can add two sequential tasks" do
+    chart = Dartt::Graph.new("Two Sequential Tasks", Date.new(2021, 1, 4), Date.new(2021, 1, 24))
     chart.add_section("Section 1", 0, 1)
-    chart.add(Dartt::Task.new("My Task")
+    chart.add(Dartt::Task.new("First Task")
                   .start(Date.new(2021, 1, 4))
                   .duration(3))
-    chart.add(Dartt::Task.new("Another Task")
+    chart.add(Dartt::Task.new("Second Task")
                   .start(Date.new(2021, 1, 7))
                   .duration(3))
-    save_svg(chart.render,"date")
+    save_svg(chart.render,"sequential-tasks")
   end
 
   it "can add date-based tasks and milestones" do
-    chart = Dartt::Graph.new("Date-based Chart", Date.new(2021, 1, 4), Date.new(2021, 1, 24))
+    chart = Dartt::Graph.new("Task and Milestone", Date.new(2021, 1, 4), Date.new(2021, 1, 24))
     chart.add_section("Section 1", 0, 1)
     chart.add(Dartt::Task.new("My Task")
                   .start(Date.new(2021, 1, 4))
