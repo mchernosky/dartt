@@ -84,6 +84,24 @@ module Dartt
         x_position += @day_width_px
       end
 
+      # Draw months.
+      current_month = @start_date.month
+      current_month_start_day = @start_date
+      (@start_date..@end_date).each do |day|
+        if day.month != current_month || day == @end_date
+          # This is the start of a new month. Draw the previous month.
+          x = @config[:section_width] + ((current_month_start_day - @start_date).to_i) * @day_width_px
+          y = @config[:height] - @config[:axis_height]
+          width = (day - current_month_start_day).to_i * @day_width_px
+          height = @config[:axis_height]
+          rect x: x, y: y, width: width, height: height, stroke: 'black'
+          text Date::ABBR_MONTHNAMES[current_month_start_day.month], x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
+               fill: @config[:task][:font_color]
+          current_month = day.month
+          current_month_start_day = day
+        end
+      end
+
       #Tasks and milestones
       @elements.each_with_index do |e, i|
         if e.is_a?(Task)
