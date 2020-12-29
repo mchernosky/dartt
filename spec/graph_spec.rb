@@ -18,7 +18,6 @@ RSpec.describe Dartt::Graph do
     chart.add_section("Section 2", 2, 2)
     chart.add_section("Section 3", 3, 5)
 
-
     # Create some sample task bars.
     chart.add_task("Planning 2", 1, 3)
     chart.add_task("Demo 2", 5, 2)
