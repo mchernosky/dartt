@@ -13,7 +13,8 @@ module Dartt
         :section_margin => 20,
         :section_first_color => '#EFFC7F',
         :section_second_color => 'white',
-        :axis_height => 108,
+        :axis_height => 100,
+        :week_height => 30,
         :weekend_color => '#D7D7D7',
         :grid_line_color => '#C1C1C1',
         :task => {
@@ -41,6 +42,7 @@ module Dartt
 
     def initialize (title, start_date, end_date, config:@@default_config)
       @title = title
+      # TODO: The end_date should be included on the chart.
       @total_days = (end_date - start_date).to_i
       @start_date = start_date
       @end_date = end_date
@@ -91,14 +93,30 @@ module Dartt
         if day.month != current_month || day == @end_date
           # This is the start of a new month. Draw the previous month.
           x = @config[:section_width] + ((current_month_start_day - @start_date).to_i) * @day_width_px
-          y = @config[:height] - @config[:axis_height]
+          y = @config[:height] - @config[:axis_height] + @config[:week_height]
           width = (day - current_month_start_day).to_i * @day_width_px
-          height = @config[:axis_height]
+          height = @config[:axis_height] - @config[:week_height]
           rect x: x, y: y, width: width, height: height, stroke: 'black'
           text Date::ABBR_MONTHNAMES[current_month_start_day.month], x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color]
           current_month = day.month
           current_month_start_day = day
+        end
+      end
+
+      # Draw weeks.
+      current_week_start_day = @start_date
+      (@start_date..@end_date).each do |day|
+        if day.monday? || day == @end_date
+          # This is the start of a new week. Draw the previous week.
+          x = @config[:section_width] + ((current_week_start_day - @start_date).to_i) * @day_width_px
+          y = @config[:height] - @config[:axis_height]
+          width = (day - current_week_start_day).to_i * @day_width_px
+          height = @config[:week_height]
+          rect x: x, y: y, width: width, height: height, stroke: 'black'
+          text current_week_start_day.day, x: x+5, y: y + height/2, font_size: @config[:task][:font_size],
+               fill: @config[:task][:font_color], text_anchor: 'start'
+          current_week_start_day = day
         end
       end
 
