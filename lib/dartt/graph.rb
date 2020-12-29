@@ -2,6 +2,7 @@ require 'victor'
 require 'pp'
 
 module Dartt
+  # TODO: Since we're using absolute coordinates now, do we have to subclass SVG?
   class Graph < Victor::SVG
 
     @@default_config = {
@@ -81,9 +82,12 @@ module Dartt
       end
       #Tasks
       @elements.each_with_index do |t, i|
-        draw_task(t.name, i, (t.start - @start_date + 1).to_i, t.duration)
+        if t.is_a?(Task)
+          draw_task(t.name, i, (t.start - @start_date + 1).to_i, t.duration)
+        elsif t.is_a?(Milestone)
+          draw_milestone(t.name, i, (t.date - @start_date + 1).to_i)
+        end
       end
-      # TODO: Draw milestones. Use milestone and task types for this.
       super
     end
 

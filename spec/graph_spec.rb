@@ -40,4 +40,14 @@ RSpec.describe Dartt::Graph do
                   .duration(3))
     save_svg(chart.render,"date")
   end
+
+  it "can add date-based tasks and milestones" do
+    chart = Dartt::Graph.new("Date-based Chart", Date.new(2021, 1, 4), Date.new(2021, 1, 24))
+    chart.add_section("Section 1", 0, 1)
+    chart.add(Dartt::Task.new("My Task")
+                  .start(Date.new(2021, 1, 4))
+                  .duration(3))
+    chart.add(Dartt::Milestone.new("Milestone", Date.new(2021, 1, 6)))
+    save_svg(chart.render,"task-and-milestone")
+  end
 end
