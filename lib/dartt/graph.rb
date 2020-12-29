@@ -14,7 +14,10 @@ module Dartt
         :section_first_color => '#EFFC7F',
         :section_second_color => 'white',
         :axis_height => 100,
-        :week_height => 30,
+        :week_height => 32,
+        :axis_fill_color => '#D7D7D7',
+        :axis_line_color => 'white',
+        :axis_line_weight => 2,
         :weekend_color => '#D7D7D7',
         :grid_line_color => '#C1C1C1',
         :task => {
@@ -97,7 +100,7 @@ module Dartt
           y = @config[:height] - @config[:axis_height] + @config[:week_height]
           width = (day - current_month_start_day).to_i * @day_width_px
           height = @config[:axis_height] - @config[:week_height]
-          rect x: x, y: y, width: width, height: height, stroke: 'black'
+          rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
           text Date::ABBR_MONTHNAMES[current_month_start_day.month], x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color]
           current_month = day.month
@@ -114,7 +117,7 @@ module Dartt
           y = @config[:height] - @config[:axis_height]
           width = (day - current_week_start_day).to_i * @day_width_px
           height = @config[:week_height]
-          rect x: x, y: y, width: width, height: height, stroke: 'black'
+          rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
           text current_week_start_day.day, x: x+5, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color], text_anchor: 'start'
           current_week_start_day = day
