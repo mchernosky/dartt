@@ -67,10 +67,6 @@ module Dartt
       @sections << {:name => name, :start_row => start_row, :end_row => end_row}
     end
 
-    def add_task(name, start_day, duration)
-      @tasks << {:name => name, :start_day => start_day, :duration => duration}
-    end
-
     def render
       #Sections
       @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
@@ -80,12 +76,13 @@ module Dartt
         line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:"#666"
         x_position += @day_width_px
       end
-      #Tasks
-      @elements.each_with_index do |t, i|
-        if t.is_a?(Task)
-          draw_task(t.name, i, (t.start - @start_date + 1).to_i, t.duration)
-        elsif t.is_a?(Milestone)
-          draw_milestone(t.name, i, (t.date - @start_date + 1).to_i)
+
+      #Tasks and milestones
+      @elements.each_with_index do |e, i|
+        if e.is_a?(Task)
+          draw_task(e.name, i, (e.start - @start_date + 1).to_i, e.duration)
+        elsif e.is_a?(Milestone)
+          draw_milestone(e.name, i, (e.date - @start_date + 1).to_i)
         end
       end
       super
