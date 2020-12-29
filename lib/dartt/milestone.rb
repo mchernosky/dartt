@@ -1,10 +1,14 @@
 module Dartt
   class Milestone
-    attr_reader :name, :date
+    attr_reader :name
 
     def initialize(name, date)
       @name = name
-      @date = date
+      @milestone = Task.new(name).start(date).duration(1)
+    end
+
+    def date
+      @milestone.start
     end
   end
 end

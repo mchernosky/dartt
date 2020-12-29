@@ -7,4 +7,9 @@ RSpec.describe Dartt::Milestone do
     expect(milestone.name).to eq("My Milestone")
     expect(milestone.date).to eq(Date.new(2020, 12, 28))
   end
+
+  it "moves the date to the weekday if it falls on a weekend" do
+    milestone = Dartt::Milestone.new("My Milestone", Date.new(2020, 12, 27))
+    expect(milestone.date).to eq(Date.new(2020, 12, 28))
+  end
 end
