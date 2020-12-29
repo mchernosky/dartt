@@ -14,6 +14,8 @@ module Dartt
         :section_first_color => '#EFFC7F',
         :section_second_color => 'white',
         :axis_height => 108,
+        :weekend_color => '#D7D7D7',
+        :grid_line_color => '#C1C1C1',
         :task => {
             :height => 50,
             :vertical_margin => 3,
@@ -41,6 +43,7 @@ module Dartt
       @title = title
       @total_days = (end_date - start_date).to_i
       @start_date = start_date
+      @end_date = end_date
       @config = config
 
       @day_width = 100.0/@total_days
@@ -73,8 +76,11 @@ module Dartt
 
       # Grid lines
       x_position = @config[:section_width]
-      (0..@total_days).each do |day|
-        line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:"#666"
+      (@start_date..@end_date).each do |day|
+        if day.saturday? || day.sunday?
+          rect x:x_position, y:@config[:title_height], width:@day_width_px, height:@config[:height] - @config[:title_height] - @config[:axis_height], fill:@config[:weekend_color]
+        end
+        line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
         x_position += @day_width_px
       end
 
