@@ -18,7 +18,7 @@ module Dartt
         :axis_fill_color => '#D7D7D7',
         :axis_line_color => 'white',
         :axis_line_weight => 2,
-        :weekend_color => '#D7D7D7',
+        :weekend_color => '#E0E0E0',
         :grid_line_color => '#C1C1C1',
         :task => {
             :height => 50,
