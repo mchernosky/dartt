@@ -4,34 +4,27 @@ require 'pp'
 module Dartt
   class Graph < Victor::SVG
 
-    def initialize (title, total_days)
-      @title = title
-      @total_days = total_days
-
-      @day_width = 100.0/@total_days
-      @sections = []
-      @tasks = []
-      @config = {
-          :width => 1920,
-          :height => 1080,
-          :title_height => 108,
-          :section_width => 300,
-          :section_margin => 20,
-          :section_first_color => '#EFFC7F',
-          :section_second_color => 'white',
-          :axis_height => 108,
-          :task => {
-              :height => 50,
-              :vertical_margin => 3,
-              :horizontal_margin => 0,
-              :rounding => 5,
-              :font_size => 20,
-              :font_color => "#003470",
-              :fill => "#77B7FF",
-              :line => "#0D57AB",
-              :line_weight => 2,
-          },
-          :milestone => {
+    @@default_config = {
+        :width => 1920,
+        :height => 1080,
+        :title_height => 108,
+        :section_width => 300,
+        :section_margin => 20,
+        :section_first_color => '#EFFC7F',
+        :section_second_color => 'white',
+        :axis_height => 108,
+        :task => {
+            :height => 50,
+            :vertical_margin => 3,
+            :horizontal_margin => 0,
+            :rounding => 5,
+            :font_size => 20,
+            :font_color => "#003470",
+            :fill => "#77B7FF",
+            :line => "#0D57AB",
+            :line_weight => 2,
+        },
+        :milestone => {
             :height => 50,
             :vertical_margin => 2,
             :rounding => 4,
@@ -40,8 +33,18 @@ module Dartt
             :fill => "#77B7FF",
             :line => "#0D57AB",
             :line_weight => 3,
-          }
-      }
+        }
+    }
+
+    def initialize (title, start_date, end_date, config:@@default_config)
+      @title = title
+      @total_days = (end_date - start_date).to_i
+      puts @total_days
+      @config = config
+
+      @day_width = 100.0/@total_days
+      @sections = []
+      @tasks = []
 
       @day_width_px = (@config[:width] - @config[:section_width]) / @total_days
 

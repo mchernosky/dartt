@@ -7,12 +7,19 @@ end
 RSpec.describe Dartt::Graph do
 
   it "can create an svg chart" do
-    chart = Dartt::Graph.new("test", 10).render
+    chart = Dartt::Graph.new("test", Date.new(2021, 01, 04), Date.new(2021, 01, 14)).render
     expect(chart).to include("<svg")
   end
 
   it "can create an empty chart" do
-    chart = Dartt::Graph.new("The Schedule", 20)
+    chart = Dartt::Graph.new("Empty Chart", Date.new(2021, 01, 04), Date.new(2021, 01, 24))
+    save_svg(chart.render,"empty")
+  end
+
+  it "can create a sample chart" do
+
+    chart = Dartt::Graph.new("Sample Chart", Date.new(2021, 01, 04), Date.new(2021, 01, 24))
+
     # Create some sections.
     chart.add_section("Section 1", 0, 1)
     chart.add_section("Section 2", 2, 2)
@@ -25,6 +32,11 @@ RSpec.describe Dartt::Graph do
     chart.add_task("Planning", 1, 10)
 
     # chart.draw_milestone("Delivery 1", 1, 3)
-    save_svg(chart.render,"empty")
+    save_svg(chart.render,"sample")
+  end
+
+  it "can create a chart with a defined start and end date" do
+    chart = Dartt::Graph.new("Date-based Chart", Date.new(2021, 01, 04), Date.new(2021, 04, 30))
+    save_svg(chart.render,"date")
   end
 end
