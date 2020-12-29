@@ -50,4 +50,24 @@ RSpec.describe Dartt::Graph do
     chart.add(Dartt::Milestone.new("Milestone", Date.new(2021, 1, 6)))
     save_svg(chart.render,"task-and-milestone")
   end
+
+  it "can draw a chart over 3 months" do
+    chart = Dartt::Graph.new("Three Month Project", Date.new(2021, 1, 4), Date.new(2021, 4, 4))
+    chart.add_section("Section 1", 0, 1)
+    chart.add(Dartt::Task.new("My Task")
+                  .start(Date.new(2021, 1, 4))
+                  .duration(20))
+    chart.add(Dartt::Milestone.new("Milestone", Date.new(2021, 1, 23)))
+    chart.add(Dartt::Task.new("My Task")
+                  .start(Date.new(2021, 1, 24))
+                  .duration(20))
+    chart.add(Dartt::Task.new("My Task")
+                  .start(Date.new(2021, 2, 14))
+                  .duration(30))
+    chart.add(Dartt::Task.new("My Task")
+                  .start(Date.new(2021, 3, 14))
+                  .duration(20))
+    chart.add(Dartt::Milestone.new("Milestone", Date.new(2021, 4, 2)))
+    save_svg(chart.render,"three-month-project")
+  end
 end

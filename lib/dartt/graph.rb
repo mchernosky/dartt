@@ -70,6 +70,7 @@ module Dartt
     def render
       #Sections
       @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
+
       # Grid lines
       x_position = @config[:section_width]
       (0..@total_days).each do |day|
