@@ -52,7 +52,7 @@ RSpec.describe Dartt::Graph do
   end
 
   it "can draw a chart over 3 months" do
-    chart = Dartt::Graph.new("Three Month Project", Date.new(2021, 1, 4), Date.new(2021, 4, 4))
+    chart = Dartt::Graph.new("Three Month Project", Date.new(2021, 1, 4), Date.new(2021, 4, 10))
     chart.add_section("Section 1", 0, 1)
     chart.add_section("Section 2", 2, 5)
     chart.add(Dartt::Task.new("Task 1")

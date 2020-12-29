@@ -44,6 +44,7 @@ module Dartt
       @title = title
       # TODO: The end_date should be included on the chart.
       @total_days = (end_date - start_date).to_i
+      puts @total_days
       @start_date = start_date
       @end_date = end_date
       @config = config
@@ -53,7 +54,7 @@ module Dartt
       @tasks = []
       @elements = []
 
-      @day_width_px = (@config[:width] - @config[:section_width]) / @total_days
+      @day_width_px = (@config[:width] - @config[:section_width]).to_f / @total_days
 
           # Draw the parent SVG.
       super viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
@@ -107,7 +108,7 @@ module Dartt
       # Draw weeks.
       current_week_start_day = @start_date
       (@start_date..@end_date).each do |day|
-        if day.monday? || day == @end_date
+        if day.monday? || (day == @end_date)
           # This is the start of a new week. Draw the previous week.
           x = @config[:section_width] + ((current_week_start_day - @start_date).to_i) * @day_width_px
           y = @config[:height] - @config[:axis_height]
