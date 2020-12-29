@@ -81,7 +81,8 @@ module Dartt
       #Tasks and milestones
       @elements.each_with_index do |e, i|
         if e.is_a?(Task)
-          draw_task(e.name, i, (e.start - @start_date + 1).to_i, e.duration)
+          duration = (e.end - e.start).to_i + 1
+          draw_task(e.name, i, (e.start - @start_date + 1).to_i, duration)
         elsif e.is_a?(Milestone)
           draw_milestone(e.name, i, (e.date - @start_date + 1).to_i)
         end
