@@ -39,12 +39,13 @@ module Dartt
     def initialize (title, start_date, end_date, config:@@default_config)
       @title = title
       @total_days = (end_date - start_date).to_i
-      puts @total_days
+      @start_date = start_date
       @config = config
 
       @day_width = 100.0/@total_days
       @sections = []
       @tasks = []
+      @elements = []
 
       @day_width_px = (@config[:width] - @config[:section_width]) / @total_days
 
@@ -55,6 +56,10 @@ module Dartt
       svg x:"0%", y:"0%", width:"100%", height:"10%" do
         text @title, x: "50%", y: "50%", fill: "black"
       end
+    end
+
+    def add(element)
+      @elements << element
     end
 
     def add_section(name, start_row, end_row)
@@ -75,8 +80,8 @@ module Dartt
         x_position += @day_width_px
       end
       #Tasks
-      @tasks.each_with_index do |t, i|
-        draw_task(t[:name], i, t[:start_day], t[:duration])
+      @elements.each_with_index do |t, i|
+        draw_task(t.name, i, (t.start - @start_date + 1).to_i, t.duration)
       end
       # TODO: Draw milestones. Use milestone and task types for this.
       super
