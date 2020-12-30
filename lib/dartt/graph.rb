@@ -2,8 +2,7 @@ require 'victor'
 require 'pp'
 
 module Dartt
-  # TODO: Since we're using absolute coordinates now, do we have to subclass SVG?
-  class Graph < Victor::SVG
+  class Graph
 
     @@default_config = {
         :width => 1920,
@@ -47,7 +46,6 @@ module Dartt
       @title = title
       # TODO: The end_date should be included on the chart.
       @total_days = (end_date - start_date).to_i
-      puts @total_days
       @start_date = start_date
       @end_date = end_date
       @config = config
@@ -59,13 +57,11 @@ module Dartt
 
       @day_width_px = (@config[:width] - @config[:section_width]).to_f / @total_days
 
-          # Draw the parent SVG.
-      super viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
+      @svg = Victor::SVG.new viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
 
       # Draw the title.
-      svg x:"0%", y:"0%", width:"100%", height:"10%" do
-        text @title, x: "50%", y: "50%", fill: "black"
-      end
+      @svg.text @title, x:@config[:width]/2, y: @config[:title_height]/2, fill: "black"
+
     end
 
     def add(element)
@@ -77,6 +73,7 @@ module Dartt
     end
 
     def render
+
       #Sections
       @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
 
@@ -84,9 +81,9 @@ module Dartt
       x_position = @config[:section_width]
       (@start_date..@end_date).each do |day|
         if day.saturday? || day.sunday?
-          rect x:x_position, y:@config[:title_height], width:@day_width_px, height:@config[:height] - @config[:title_height] - @config[:axis_height], fill:@config[:weekend_color]
+          @svg.rect x:x_position, y:@config[:title_height], width:@day_width_px, height:@config[:height] - @config[:title_height] - @config[:axis_height], fill:@config[:weekend_color]
         end
-        line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
+        @svg.line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
         x_position += @day_width_px
       end
 
@@ -100,8 +97,8 @@ module Dartt
           y = @config[:height] - @config[:axis_height] + @config[:week_height]
           width = (day - current_month_start_day).to_i * @day_width_px
           height = @config[:axis_height] - @config[:week_height]
-          rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
-          text Date::ABBR_MONTHNAMES[current_month_start_day.month], x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
+          @svg.rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
+          @svg.text Date::ABBR_MONTHNAMES[current_month_start_day.month], x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color]
           current_month = day.month
           current_month_start_day = day
@@ -117,8 +114,8 @@ module Dartt
           y = @config[:height] - @config[:axis_height]
           width = (day - current_week_start_day).to_i * @day_width_px
           height = @config[:week_height]
-          rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
-          text current_week_start_day.day, x: x+5, y: y + height/2, font_size: @config[:task][:font_size],
+          @svg.rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
+          @svg.text current_week_start_day.day, x: x+5, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color], text_anchor: 'start'
           current_week_start_day = day
         end
@@ -133,7 +130,7 @@ module Dartt
           draw_milestone(e.name, i, (e.date - @start_date + 1).to_i)
         end
       end
-      super
+      @svg.render
     end
 
     private
@@ -145,8 +142,8 @@ module Dartt
       if index % 2 == 1
         fill = @config[:section_second_color]
       end
-      rect x: "0%", y: y, width: "100%", height: height, fill: fill
-      text name, x:@config[:section_margin], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
+      @svg.rect x: "0%", y: y, width: "100%", height: height, fill: fill
+      @svg.text name, x:@config[:section_margin], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
     end
 
     def draw_task(name, row, start_day, duration)
@@ -159,9 +156,9 @@ module Dartt
       width = (duration * @day_width_px) - 2* @config[:task][:horizontal_margin]
       height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
 
-      rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
+      @svg.rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
            stroke: @config[:task][:line], stroke_width: @config[:task][:line_weight]
-      text name, x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
+      @svg.text name, x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
            fill: @config[:task][:font_color]
     end
 
@@ -178,14 +175,14 @@ module Dartt
       y = milestone_center_y - milestone_side/2
 
       # Draw the milestone and rotate it to form a diamond.
-      rect x:x, y:y, width:milestone_side, height:milestone_side,
+      @svg.rect x:x, y:y, width:milestone_side, height:milestone_side,
            fill: @config[:milestone][:fill],
            stroke: @config[:milestone][:line],
            stroke_width: @config[:milestone][:line_weight],
            transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
            rx: @config[:milestone][:rounding]
 
-      text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size],
+      @svg.text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size],
            fill: @config[:milestone][:font_color], text_anchor: 'start'
     end
   end
