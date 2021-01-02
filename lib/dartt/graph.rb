@@ -2,6 +2,30 @@ require 'victor'
 require 'pp'
 
 module Dartt
+
+  class Chart
+    attr_accessor :tasks
+    attr_reader :name
+    def initialize (name)
+      @name = name
+      @tasks = []
+    end
+    def task (name)
+      @tasks << name
+    end
+  end
+
+  class ChartBuilder
+
+    def self.build(name, &block)
+      c = Chart.new(name)
+      if block_given?
+        c.instance_eval(&block)
+      end
+      return c
+    end
+  end
+
   class Graph
 
     @@default_config = {
