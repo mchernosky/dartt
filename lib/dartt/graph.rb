@@ -15,16 +15,14 @@ module Dartt
     end
   end
 
-  class ChartBuilder
-
-    def self.build(name, &block)
-      c = Chart.new(name)
-      if block_given?
-        c.instance_eval(&block)
-      end
-      return c
+  def build(name, &block)
+    c = Chart.new(name)
+    if block_given?
+      c.instance_eval(&block)
     end
+    return c
   end
+  module_function :build
 
   class Graph
 
