@@ -26,6 +26,12 @@ RSpec.describe Dartt::Task do
     end
   end
 
+  describe "equality" do
+    it "treats two tasks with the same name as equal"
+    it "treats two tasks with the same name, start and duration as equal"
+    it "treats two tasks with the same name but different start dates as not equal"
+  end
+
   describe "calculating date and duration" do
 
     it "can get the end date" do
