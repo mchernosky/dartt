@@ -13,6 +13,10 @@ module Dartt
       @graph.title
     end
 
+    def after (task)
+      task.end + 1
+    end
+
     def task (name, start: nil, duration: nil)
       new_task = Task.new(name)
       unless start.nil?

@@ -58,4 +58,12 @@ RSpec.describe Dartt::Chart do
     end
     expect(c).to include(Dartt::Task.new("Second Task").start(Date.new(2021, 1, 6)).duration(3))
   end
+
+  it "can add a task that occurs after the end of another task" do
+    c = Dartt.chart "The Schedule" do
+      first = task "First Task", start: Date.new(2021, 1, 4), duration: 3
+      task "Second Task", start: after(first), duration: 3
+    end
+    expect(c).to include(Dartt::Task.new("Second Task").start(Date.new(2021, 1, 7)).duration(3))
+  end
 end
