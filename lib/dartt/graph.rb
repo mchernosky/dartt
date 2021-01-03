@@ -12,9 +12,18 @@ module Dartt
     def name
       @graph.title
     end
-    def task (name)
-      @graph.add(Task.new(name))
+
+    def task (name, start: nil, duration: nil)
+      new_task = Task.new(name)
+      unless start.nil?
+        new_task = new_task.start(start)
+      end
+      unless duration.nil?
+        new_task = new_task.duration(duration)
+      end
+      @graph.add(new_task)
     end
+
     def elements
       @graph.elements
     end

@@ -36,4 +36,18 @@ RSpec.describe Dartt::Chart do
     expect(c).to include(Dartt::Task.new("A Task"))
     expect(c).not_to include(Dartt::Task.new("Task Not Added"))
   end
+
+  it "can add a task with a start date" do
+    c = Dartt.chart "The Schedule" do
+      task "A Task", start: Date.new(2021, 1, 4)
+    end
+    expect(c).to include(Dartt::Task.new("A Task").start(Date.new(2021, 1, 4)))
+  end
+
+  it "can add a task with a start date and duration" do
+    c = Dartt.chart "The Schedule" do
+      task "A Task", start: Date.new(2021, 1, 4), duration: 3
+    end
+    expect(c).to include(Dartt::Task.new("A Task").start(Date.new(2021, 1, 4)).duration(3))
+  end
 end
