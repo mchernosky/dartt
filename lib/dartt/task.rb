@@ -14,7 +14,8 @@ module Dartt
 
     def ==(other)
       @name  == other.name and
-      @start == other.start
+      @start == other.start and
+      @duration == other.duration
     end
 
       def start(date = nil)
@@ -78,7 +79,11 @@ module Dartt
     end
 
     def get_duration
-      if @duration.nil?
+      if not @duration.nil?
+        # The duration is already set so return it.
+        @duration
+      elsif not @start.nil? and not @end.nil?
+        # Compute the duration from the start and end dates.
         duration = 0
         (@start..@end).each do |day|
           unless excluded?(day)
@@ -86,9 +91,8 @@ module Dartt
           end
         end
         duration
-      else
-        @duration
       end
+      # The duration can not be compute so return nil.
     end
 
     def set_start(date)
