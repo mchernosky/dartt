@@ -29,8 +29,9 @@ module Dartt
     if block_given?
       c.instance_eval(&block)
     end
-    return c
+    c
   end
+
   module_function :chart
 
   class Graph
@@ -84,7 +85,6 @@ module Dartt
 
       @day_width = 100.0/@total_days
       @sections = []
-      @tasks = []
       @elements = []
 
       @day_width_px = (@config[:width] - @config[:section_width]).to_f / @total_days
