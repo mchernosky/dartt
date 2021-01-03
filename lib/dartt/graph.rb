@@ -22,6 +22,7 @@ module Dartt
         new_task = new_task.duration(duration)
       end
       @graph.add(new_task)
+      new_task
     end
 
     def elements
