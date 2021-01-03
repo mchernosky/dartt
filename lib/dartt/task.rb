@@ -13,7 +13,8 @@ module Dartt
     end
 
     def ==(other)
-      @name  == other.name
+      @name  == other.name and
+      @start == other.start
     end
 
       def start(date = nil)
@@ -106,6 +107,10 @@ module Dartt
     def get_start
       if @start.nil?
         # No start date has been set, compute from the end date.
+        if @end.nil? or @duration.nil?
+          # No end or duration has been set, so we can't calculate from them.
+          return
+        end
         start_date = @end
         (@duration-1).times do
           start_date = get_previous_included_date(start_date)

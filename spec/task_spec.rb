@@ -27,8 +27,30 @@ RSpec.describe Dartt::Task do
   end
 
   describe "equality" do
-    it "treats two tasks with the same name as equal"
-    it "treats two tasks with the same name, start and duration as equal"
+    it "treats two tasks with the same name as equal" do
+      a = Dartt::Task.new("Task 1")
+      b = Dartt::Task.new("Task 1")
+      expect(a).to eq(b)
+    end
+
+    it "treats two tasks with different names as not equal" do
+      a = Dartt::Task.new("Task 1")
+      b = Dartt::Task.new("Task 2")
+      expect(a).not_to eq(b)
+    end
+
+    it "treats two tasks with the same name and start day as equal" do
+      a = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4))
+      b = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4))
+      expect(a).to eq(b)
+    end
+
+    it "treats two tasks with the same name and different start day as not equal" do
+      a = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4))
+      b = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 5))
+      expect(a).not_to eq(b)
+    end
+
     it "treats two tasks with the same name but different start dates as not equal"
   end
 
