@@ -62,6 +62,24 @@ RSpec.describe Dartt::Task do
       b = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4)).duration(2)
       expect(a).not_to eq(b)
     end
+
+    it "treats two tasks with the same name, start day and duration as equal when one is defined by end date" do
+      a = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4)).duration(2)
+      b = Dartt::Task.new("Task 1").end(Date.new(2021, 1, 5)).duration(2)
+      expect(a).to eq(b)
+    end
+
+    it "treats two tasks with the same name, start day and duration as equal when one is defined by start and end date" do
+      a = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4)).duration(2)
+      b = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4)).end(Date.new(2021, 1, 5))
+      expect(a).to eq(b)
+    end
+
+    it "treats two tasks with the same name, duration but different start dates as not equal when one is defined by end date" do
+      a = Dartt::Task.new("Task 1").start(Date.new(2021, 1, 4)).duration(2)
+      b = Dartt::Task.new("Task 1").end(Date.new(2021, 1, 6)).duration(2)
+      expect(a).not_to eq(b)
+    end
   end
 
   describe "calculating date and duration" do
