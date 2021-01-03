@@ -12,7 +12,11 @@ module Dartt
       self
     end
 
-    def start(date = nil)
+    def ==(other)
+      @name  == other.name
+    end
+
+      def start(date = nil)
       if date.nil?
         get_start
       else

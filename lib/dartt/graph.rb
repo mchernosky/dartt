@@ -7,25 +7,32 @@ module Dartt
     attr_accessor :tasks
     attr_reader :name
     def initialize (name)
-      @name = name
-      @tasks = []
+      @graph = Graph.new(name, Date.new(2021, 1, 4), Date.new(2021, 1, 14))
+    end
+
+    def name
+      @graph.title
     end
     def task (name)
-      @tasks << name
+      @graph.add(Task.new(name))
+    end
+    def elements
+      @graph.elements
     end
   end
 
-  def build(name, &block)
+  def chart(name, &block)
     c = Chart.new(name)
     if block_given?
       c.instance_eval(&block)
     end
     return c
   end
-  module_function :build
+  module_function :chart
 
   class Graph
 
+    attr_reader :title, :elements
     @@default_config = {
         :width => 1920,
         :height => 1080,
