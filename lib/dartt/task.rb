@@ -105,20 +105,18 @@ module Dartt
     end
 
     def get_start
-      if @start.nil?
-        # No start date has been set, compute from the end date.
-        if @end.nil? or @duration.nil?
-          # No end or duration has been set, so we can't calculate from them.
-          return
-        end
+      if not @start.nil?
+        # The start date is already set so return it.
+        @start
+      elsif not @end.nil? and not @duration.nil?
+        # End and duration are set, so calculate from the start date.
         start_date = @end
         (@duration-1).times do
           start_date = get_previous_included_date(start_date)
         end
         start_date
-      else
-        @start
       end
+      # Nothing is set so return nil.
     end
 
     def excluded?(date)
