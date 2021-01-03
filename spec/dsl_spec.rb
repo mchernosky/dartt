@@ -17,6 +17,6 @@ RSpec.describe Dartt::Chart do
     c = Dartt.chart "Three Month Project" do
       task "A Task"
     end
-    expect(c.elements).to include(Dartt::Task.new("A Task"))
+    expect(c).to include(Dartt::Task.new("A Task"))
   end
 end

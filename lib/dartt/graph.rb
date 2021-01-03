@@ -4,7 +4,6 @@ require 'pp'
 module Dartt
 
   class Chart
-    attr_accessor :tasks
     attr_reader :name
     def initialize (name)
       @graph = Graph.new(name, Date.new(2021, 1, 4), Date.new(2021, 1, 14))
@@ -18,6 +17,10 @@ module Dartt
     end
     def elements
       @graph.elements
+    end
+
+    def include?(obj)
+      @graph.elements.include?(obj)
     end
   end
 
