@@ -221,7 +221,7 @@ module Dartt
 
       @svg.rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
            stroke: @config[:task][:line], stroke_width: @config[:task][:line_weight]
-      @svg.text name, x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
+      @svg.text name, x: x + width/2, y: y + height/2 + 1, font_size: @config[:task][:font_size],
            fill: @config[:task][:font_color]
     end
 
@@ -245,7 +245,7 @@ module Dartt
            transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
            rx: @config[:milestone][:rounding]
 
-      @svg.text name, x: x + milestone_height, y: milestone_center_y, font_size: @config[:task][:font_size],
+      @svg.text name, x: x + milestone_height, y: milestone_center_y + 1, font_size: @config[:task][:font_size],
            fill: @config[:milestone][:font_color], text_anchor: 'start'
     end
   end
