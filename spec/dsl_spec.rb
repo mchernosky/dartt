@@ -46,31 +46,31 @@ RSpec.describe Dartt::Chart do
 
   it "can add a task with a start date and duration" do
     c = Dartt.chart "The Schedule" do
-      task "A Task", start: Date.new(2021, 1, 4), duration: 3
+      task "A Task", start: Date.new(2021, 1, 4), days: 3
     end
     expect(c).to include(Dartt::Task.new("A Task").start(Date.new(2021, 1, 4)).duration(3))
   end
 
   it "can add a task that occurs at the end of another task" do
     c = Dartt.chart "The Schedule" do
-      first = task "First Task", start: Date.new(2021, 1, 4), duration: 3
-      task "Second Task", start: first.end, duration: 3
+      first = task "First Task", start: Date.new(2021, 1, 4), days: 3
+      task "Second Task", start: first.end, days: 3
     end
     expect(c).to include(Dartt::Task.new("Second Task").start(Date.new(2021, 1, 6)).duration(3))
   end
 
   it "can add a task that occurs after the end of another task" do
     c = Dartt.chart "The Schedule" do
-      first = task "First Task", start: Date.new(2021, 1, 4), duration: 3
-      task "Second Task", after: first, duration: 3
+      first = task "First Task", start: Date.new(2021, 1, 4), days: 3
+      task "Second Task", after: first, days: 3
     end
     expect(c).to include(Dartt::Task.new("Second Task").start(Date.new(2021, 1, 7)).duration(3))
   end
 
   it "can add a task that occurs before the start of another task" do
     c = Dartt.chart "The Schedule" do
-      second = task "Second Task", start: Date.new(2021, 1, 7), duration: 3
-      task "First Task", before: second, duration: 3
+      second = task "Second Task", start: Date.new(2021, 1, 7), days: 3
+      task "First Task", before: second, days: 3
     end
 
     expect(c).to include(Dartt::Task.new("First Task").start(Date.new(2021, 1, 4)).duration(3))
@@ -87,14 +87,14 @@ RSpec.describe Dartt::Chart do
   it "can add a task after a milestone" do
     c = Dartt.chart "The Schedule" do
       start = milestone "Start", Date.new(2021, 1, 4)
-      task "First Task", after: start, duration: 3
+      task "First Task", after: start, days: 3
     end
     expect(c).to include(Dartt::Task.new("First Task").start(Date.new(2021, 1, 5)).duration(3))
   end
 
   it "can add a milestone after a task" do
     c = Dartt.chart "The Schedule" do
-      t = task "First Task", start: Date.new(2021, 1, 4), duration: 3
+      t = task "First Task", start: Date.new(2021, 1, 4), days: 3
       milestone "First Task Complete", after: t
     end
     expect(c).to include(Dartt::Milestone.new("First Task Complete", Date.new(2021, 1, 6)))

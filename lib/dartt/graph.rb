@@ -13,13 +13,13 @@ module Dartt
       @graph.title
     end
 
-    def task (name, start: nil, duration: nil, before: nil, after: nil)
+    def task (name, start: nil, days: nil, before: nil, after: nil)
       new_task = Task.new(name)
       unless start.nil?
         new_task = new_task.start(start)
       end
-      unless duration.nil?
-        new_task = new_task.duration(duration)
+      unless days.nil?
+        new_task = new_task.duration(days)
       end
       unless before.nil?
         new_task = new_task.end(before.start - 1)
