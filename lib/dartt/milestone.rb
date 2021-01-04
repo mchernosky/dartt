@@ -6,6 +6,10 @@ module Dartt
       @milestone = Task.new(name).start(date).duration(1)
     end
 
+    def ==(other)
+      name == other.name and date == other.date
+    end
+
     def name
       @milestone.name
     end
