@@ -14,11 +14,11 @@ module Dartt
 
     def ==(other)
       @name  == other.name and
-      @start == other.start and
-      @duration == other.duration
+          get_start == other.start and
+          get_duration == other.duration
     end
 
-      def start(date = nil)
+    def start(date = nil)
       if date.nil?
         get_start
       else
