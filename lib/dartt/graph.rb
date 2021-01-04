@@ -84,7 +84,7 @@ module Dartt
         :weekend_color => '#E0E0E0',
         :grid_line_color => '#C1C1C1',
         :task => {
-            :height => 50,
+            :height => 40,
             :vertical_margin => 3,
             :horizontal_margin => 0,
             :rounding => 5,
@@ -95,7 +95,7 @@ module Dartt
             :line_weight => 2,
         },
         :milestone => {
-            :height => 50,
+            :height => 40,
             :vertical_margin => 2,
             :rounding => 4,
             :font_size => 20,
