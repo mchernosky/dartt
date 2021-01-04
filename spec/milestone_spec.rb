@@ -12,4 +12,14 @@ RSpec.describe Dartt::Milestone do
     milestone = Dartt::Milestone.new("My Milestone", Date.new(2020, 12, 27))
     expect(milestone.date).to eq(Date.new(2020, 12, 28))
   end
+
+  it "responds to start" do
+    milestone = Dartt::Milestone.new("My Milestone", Date.new(2021, 1, 4))
+    expect(milestone.start).to eq(Date.new(2021, 1, 4))
+  end
+
+  it "responds to end" do
+    milestone = Dartt::Milestone.new("My Milestone", Date.new(2021, 1, 4))
+    expect(milestone.end).to eq(Date.new(2021, 1, 4))
+  end
 end

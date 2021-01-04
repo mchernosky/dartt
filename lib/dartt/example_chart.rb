@@ -8,7 +8,8 @@ def save_svg(svg, name)
 end
 
 c = Dartt.chart "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 24) do
-  milestone "v1.0 Delivery", Date.new(2021, 1, 7)
+  kickoff = milestone "Kickoff Unblocked", Date.new(2021, 1, 4)
+  task "Register definition review", after: kickoff, duration: 5
 end
 
 save_svg(c.render, "example_chart")

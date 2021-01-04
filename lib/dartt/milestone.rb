@@ -17,5 +17,13 @@ module Dartt
     def date
       @milestone.start
     end
+
+    def start
+      date
+    end
+
+    def end
+      date
+    end
   end
 end
