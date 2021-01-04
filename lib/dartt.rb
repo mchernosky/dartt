@@ -1,4 +1,7 @@
 require "dartt/version"
+require 'dartt/graph'
+require 'dartt/task'
+require 'dartt/milestone'
 
 module Dartt
   class TaskOverconstrained < StandardError

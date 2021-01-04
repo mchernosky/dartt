@@ -1,6 +1,4 @@
-require 'dartt/graph'
-require 'dartt/task'
-require 'dartt/milestone'
+require 'dartt'
 require 'date'
 
 def save_svg(svg, name)
