@@ -32,6 +32,12 @@ module Dartt
     end
 
     def milestone (name, date)
+      if date.is_a?(Hash)
+        if date.include?(:after)
+          date = date[:after].end
+          puts date
+        end
+      end
       new_milestone = Milestone.new(name, date)
       @graph.add(new_milestone)
       new_milestone
