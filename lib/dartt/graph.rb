@@ -5,8 +5,8 @@ module Dartt
 
   class Chart
     attr_reader :name
-    def initialize (name)
-      @graph = Graph.new(name, Date.new(2021, 1, 4), Date.new(2021, 1, 14))
+    def initialize (name, start_date, end_date)
+      @graph = Graph.new(name, start_date, end_date)
     end
 
     def name
@@ -43,10 +43,14 @@ module Dartt
     def include?(obj)
       @graph.elements.include?(obj)
     end
+
+    def render
+      @graph.render
+    end
   end
 
-  def chart(name, &block)
-    c = Chart.new(name)
+  def chart(name, start_date = Date.new(2021, 1, 4), end_date = Date.new(2021, 1, 14), &block)
+    c = Chart.new(name, start_date, end_date)
     if block_given?
       c.instance_eval(&block)
     end

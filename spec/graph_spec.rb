@@ -72,10 +72,4 @@ RSpec.describe Dartt::Graph do
     save_svg(chart.render,"three-month-project")
   end
 
-  # it "can draw a chart with a nice dsl" do
-  #   Dartt.chart "Three Month Project", Date.new(2021, 1, 4), Date.new(2021, 4, 10) do
-  #
-  #   end
-  #   #save_svg(chart.render,"three-month-project")
-  # end
 end
