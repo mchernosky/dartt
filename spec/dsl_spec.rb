@@ -83,4 +83,11 @@ RSpec.describe Dartt::Chart do
 
     expect(c).to include(Dartt::Milestone.new("v1.0 Delivery", Date.new(2021, 1, 7)))
   end
+
+  it "can add a task after a milestone" do
+    c = Dartt.chart "The Schedule" do
+      start = milestone "Start", Date.new(2021, 1, 7)
+      task "First Task", after: start, duration: 3
+    end
+  end
 end

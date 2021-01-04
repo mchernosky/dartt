@@ -34,6 +34,7 @@ module Dartt
     def milestone (name, date)
       new_milestone = Milestone.new(name, date)
       @graph.add(new_milestone)
+      new_milestone
     end
 
     def elements
