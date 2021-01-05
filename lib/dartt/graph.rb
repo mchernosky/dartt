@@ -193,6 +193,25 @@ module Dartt
           draw_milestone(e.name, i, (e.date - @start_date + 1).to_i)
         end
       end
+
+      # Add a script that shifts the task text to outside the bar if it doesn't fit.
+      @svg.script type: "text/javascript" do
+        @svg._ %[
+          const tasks = document.getElementsByClassName('task');
+          for (i = 0; i < tasks.length; i++) {
+            const bar = tasks[i].children[0];
+            var text = tasks[i].children[1];
+            const bar_length = parseFloat(bar.getAttribute("width"));
+            const text_length = text.getComputedTextLength();
+            if (text_length > bar_length) {
+              const text_x_position = parseFloat(text.getAttribute("x"));
+              text.setAttribute("text-anchor", "start");
+              text.setAttribute("x", text_x_position + (bar_length/2) + 8);
+            }
+          }
+        ]
+      end
+
       @svg.render
     end
 
@@ -219,10 +238,12 @@ module Dartt
       width = (duration * @day_width_px) - 2* @config[:task][:horizontal_margin]
       height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
 
-      @svg.rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
-           stroke: @config[:task][:line], stroke_width: @config[:task][:line_weight]
-      @svg.text name, x: x + width/2, y: y + height/2 + 1, font_size: @config[:task][:font_size],
-           fill: @config[:task][:font_color]
+      @svg.g class: "task" do
+        @svg.rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
+             stroke: @config[:task][:line], stroke_width: @config[:task][:line_weight]
+        @svg.text name, x: x + width/2, y: y + height/2 + 1, font_size: @config[:task][:font_size],
+             fill: @config[:task][:font_color]
+      end
     end
 
     def draw_milestone(name, row, day)
