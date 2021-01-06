@@ -48,3 +48,11 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 - Make section transparency configurable.
 - Individual day highlighting.
 - Custom styling for custom tags.
+- Automatic chart sizing.
+- Reference chart start/end for task dates.
+- Allow dependencies on more than one task.
+
+### Errors to handle
+
+- Tasks placed outside chart dates.
+- Task and milestone title run off the end of the chart.
