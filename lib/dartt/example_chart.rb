@@ -6,6 +6,7 @@ def save_svg(svg, name)
 end
 
 c = Dartt.chart "The Schedule", Date.new(2021, 1, 18), Date.new(2021, 4, 18) do
+  section "Design"
   kickoff =           milestone "Kickoff Unblocked", start_of: Date.new(2021, 1, 18)
   register_review =   task "Register definition review", after: kickoff, days: 5
                       task "Technical design document", after: kickoff, days: 10

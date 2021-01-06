@@ -42,8 +42,8 @@ module Dartt
       new_milestone
     end
 
-    def elements
-      @graph.elements
+    def section (title)
+
     end
 
     def include?(obj)
@@ -72,6 +72,7 @@ module Dartt
         :width => 1920,
         :height => 1080,
         :title_height => 108,
+        :title_font_color => "#003470",
         :section_width => 300,
         :section_margin => 20,
         :section_first_color => '#FFFDA2',
@@ -123,7 +124,7 @@ module Dartt
       @svg = Victor::SVG.new viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
 
       # Draw the title.
-      @svg.text @title, x:@config[:width]/2, y: @config[:title_height]/2, fill: "black"
+      @svg.text @title, x:@config[:width]/2, y: @config[:title_height]/2, fill: @config[:title_font_color]
 
     end
 
