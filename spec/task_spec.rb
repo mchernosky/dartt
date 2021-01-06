@@ -234,7 +234,14 @@ RSpec.describe Dartt::Task do
       }.to raise_error(Dartt::TaskOverconstrained)
     end
 
-    it "raises an error if the duraration is negative"
+    it "raises an error if the duration is negative" do
+      task = Dartt::Task.new("My Task")
+                 .start(Date.new(2020,12,10))
+
+      expect {
+        task.duration(-5)
+      }.to raise_error(Dartt::TaskInvalid)
+    end
     it "raises an error if the duration is zero"
     it "raises an error when the start date is after the end date"
   end

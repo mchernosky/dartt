@@ -17,4 +17,17 @@ module Dartt
       "Task #{@name} is over constrained (start: #{start_date}, end: #{@end_date}, duration: #{duration} )"
     end
   end
+
+  class TaskInvalid < StandardError
+    def initialize(task, message)
+      @task = task
+      @message = message
+    end
+
+    def message
+      super
+      "Task #{@task} is invalid: #{@message}"
+    end
+  end
+
 end
