@@ -80,8 +80,10 @@ module Dartt
     @@default_config = {
         :width => 1920,
         :height => 1080,
-        :title_height => 108,
-        :title_font_color => "#003470",
+        :title => {
+            :height => 108,
+            :font_color => "#003470",
+        },
         :section_width => 300,
         :section_margin => 20,
         :section_first_color => '#FFFDA2',
@@ -133,7 +135,7 @@ module Dartt
       @svg = Victor::SVG.new viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
 
       # Draw the title.
-      @svg.text @title, x:@config[:width]/2, y: @config[:title_height]/2, fill: @config[:title_font_color]
+      @svg.text @title, x:@config[:width]/2, y: @config[:title][:height]/2, fill: @config[:title][:font_color]
 
     end
 
@@ -154,9 +156,9 @@ module Dartt
       x_position = @config[:section_width]
       (@start_date..@end_date).each do |day|
         if day.saturday? || day.sunday? and not day == @end_date
-          @svg.rect x:x_position, y:@config[:title_height], width:@day_width_px, height:@config[:height] - @config[:title_height] - @config[:axis_height], fill:@config[:weekend_color]
+          @svg.rect x:x_position, y:@config[:title][:height], width:@day_width_px, height:@config[:height] - @config[:title][:height] - @config[:axis_height], fill:@config[:weekend_color]
         end
-        @svg.line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
+        @svg.line x1:x_position, y1:@config[:title][:height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
         x_position += @day_width_px
       end
 
@@ -228,7 +230,7 @@ module Dartt
     private
 
     def draw_section(index, name, start_row, end_row)
-      y = @config[:title_height] + start_row*@config[:task][:height]
+      y = @config[:title][:height] + start_row*@config[:task][:height]
       height = (end_row-start_row+1)*@config[:task][:height]
       fill = @config[:section_first_color]
       if index % 2 == 1
@@ -242,7 +244,7 @@ module Dartt
       task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@config[:width]*100
 
       x = @config[:section_width] + ((start_day - 1) * @day_width_px) + @config[:task][:horizontal_margin]
-      y = @config[:title_height]
+      y = @config[:title][:height]
       y += (row * @config[:task][:height]) + @config[:task][:vertical_margin]
 
       width = (duration * @day_width_px) - 2* @config[:task][:horizontal_margin]
@@ -261,7 +263,7 @@ module Dartt
       milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
 
       section_width_px = @config[:section_width]
-      title_height_px = @config[:title_height]
+      title_height_px = @config[:title][:height]
 
       milestone_center_x = section_width_px + day * @day_width_px
       milestone_center_y = title_height_px + ((row * @config[:task][:height]) + (@config[:task][:height]/2))
