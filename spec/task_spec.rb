@@ -252,6 +252,31 @@ RSpec.describe Dartt::Task do
       }.to raise_error(Dartt::TaskInvalid)
     end
 
-    it "raises an error when the start date is after the end date"
+    it "raises an error when the start date is after the end date" do
+      task = Dartt::Task.new("My Task")
+                 .end(Date.new(2021,1,5))
+
+      expect {
+        task.start(Date.new(2021,1,6))
+      }.to raise_error(Dartt::TaskInvalid)
+    end
+
+    it "raises an error when the end date is before the start date" do
+      task = Dartt::Task.new("My Task")
+                 .start(Date.new(2020,12,10))
+
+      expect {
+        task.end(Date.new(2020,12,9))
+      }.to raise_error(Dartt::TaskInvalid)
+    end
+
+    it "raises no error when the end date is the same as the start date" do
+      task = Dartt::Task.new("My Task")
+                 .start(Date.new(2021,1,5))
+
+      expect {
+        task.end(Date.new(2021,1,5))
+      }.not_to raise_error
+    end
   end
 end

@@ -47,6 +47,10 @@ module Dartt
     private
 
     def set_end(date)
+      if not @start.nil? and date < @start
+        # This end date is before the start date. This is an error.
+        raise TaskInvalid.new(self, "End date cannot be before start date")
+      end
       if @start.nil? or @duration.nil?
         @end = date
         while excluded?(@end)
@@ -102,6 +106,11 @@ module Dartt
     end
 
     def set_start(date)
+      if not @end.nil? and @end < date
+        # This start date is after the end date. This is an error.
+        raise TaskInvalid.new(self, "Start date cannot be after end date")
+      end
+
       if @duration.nil? or @end.nil?
         @start = date
         # If the start falls on an excluded day, move it to an included day.
