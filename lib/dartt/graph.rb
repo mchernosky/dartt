@@ -90,13 +90,15 @@ module Dartt
             :color_1 => '#FFFDA2',
             :color2 => 'white',
         },
-        :axis_height => 80,
-        :week_height => 32,
-        :axis_fill_color => '#D7D7D7',
-        :axis_line_color => 'white',
-        :axis_line_weight => 2,
-        :weekend_color => '#E0E0E0',
-        :grid_line_color => '#C1C1C1',
+        :axis => {
+            :height => 80,
+            :week_height => 32,
+            :fill_color => '#D7D7D7',
+            :line_color => 'white',
+            :line_weight => 2,
+            :weekend_color => '#E0E0E0',
+            :grid_line_color => '#C1C1C1',
+        },
         :task => {
             :height => 40,
             :vertical_margin => 3,
@@ -158,9 +160,9 @@ module Dartt
       x_position = @config[:section][:width]
       (@start_date..@end_date).each do |day|
         if day.saturday? || day.sunday? and not day == @end_date
-          @svg.rect x:x_position, y:@config[:title][:height], width:@day_width_px, height:@config[:height] - @config[:title][:height] - @config[:axis_height], fill:@config[:weekend_color]
+          @svg.rect x:x_position, y:@config[:title][:height], width:@day_width_px, height:@config[:height] - @config[:title][:height] - @config[:axis][:height], fill:@config[:axis][:weekend_color]
         end
-        @svg.line x1:x_position, y1:@config[:title][:height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
+        @svg.line x1:x_position, y1:@config[:title][:height], x2:x_position, y2:@config[:height] - @config[:axis][:height], stroke:@config[:axis][:grid_line_color]
         x_position += @day_width_px
       end
 
@@ -171,10 +173,10 @@ module Dartt
         if day.month != current_month || day == @end_date
           # This is the start of a new month. Draw the previous month.
           x = @config[:section][:width] + ((current_month_start_day - @start_date).to_i) * @day_width_px
-          y = @config[:height] - @config[:axis_height] + @config[:week_height]
+          y = @config[:height] - @config[:axis][:height] + @config[:axis][:week_height]
           width = (day - current_month_start_day).to_i * @day_width_px
-          height = @config[:axis_height] - @config[:week_height]
-          @svg.rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
+          height = @config[:axis][:height] - @config[:axis][:week_height]
+          @svg.rect x: x, y: y, width: width, height: height, stroke: @config[:axis][:line_color], fill: @config[:axis][:fill_color], stroke_width: @config[:axis][:line_weight]
           @svg.text Date::ABBR_MONTHNAMES[current_month_start_day.month], x: x + width/2, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color]
           current_month = day.month
@@ -188,10 +190,10 @@ module Dartt
         if day.monday? || (day == @end_date)
           # This is the start of a new week. Draw the previous week.
           x = @config[:section][:width] + ((current_week_start_day - @start_date).to_i) * @day_width_px
-          y = @config[:height] - @config[:axis_height]
+          y = @config[:height] - @config[:axis][:height]
           width = (day - current_week_start_day).to_i * @day_width_px
-          height = @config[:week_height]
-          @svg.rect x: x, y: y, width: width, height: height, stroke: @config[:axis_line_color], fill: @config[:axis_fill_color], stroke_width: @config[:axis_line_weight]
+          height = @config[:axis][:week_height]
+          @svg.rect x: x, y: y, width: width, height: height, stroke: @config[:axis][:line_color], fill: @config[:axis][:fill_color], stroke_width: @config[:axis][:line_weight]
           @svg.text current_week_start_day.day, x: x+5, y: y + height/2, font_size: @config[:task][:font_size],
                fill: @config[:task][:font_color], text_anchor: 'start'
           current_week_start_day = day
