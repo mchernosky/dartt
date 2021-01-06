@@ -153,7 +153,7 @@ module Dartt
       # Grid lines
       x_position = @config[:section_width]
       (@start_date..@end_date).each do |day|
-        if day.saturday? || day.sunday?
+        if day.saturday? || day.sunday? and not day == @end_date
           @svg.rect x:x_position, y:@config[:title_height], width:@day_width_px, height:@config[:height] - @config[:title_height] - @config[:axis_height], fill:@config[:weekend_color]
         end
         @svg.line x1:x_position, y1:@config[:title_height], x2:x_position, y2:@config[:height] - @config[:axis_height], stroke:@config[:grid_line_color]
