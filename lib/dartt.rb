@@ -1,4 +1,5 @@
 require "dartt/version"
+require 'dartt/chart'
 require 'dartt/graph'
 require 'dartt/task'
 require 'dartt/milestone'
