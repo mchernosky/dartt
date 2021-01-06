@@ -71,8 +71,11 @@ module Dartt
 
     def set_duration(days)
       if days < 0
-        raise TaskInvalid.new(self, "Duration can not be negative")
+        raise TaskInvalid.new(self, "Duration cannot be negative")
+      elsif days == 0
+        raise TaskInvalid.new(self, "Duration cannot be zero")
       end
+
       if @start.nil? or @end.nil?
         @duration = days
       else
