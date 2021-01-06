@@ -6,6 +6,7 @@ module Dartt
   class Chart
     attr_reader :name
     def initialize (name, start_date, end_date)
+      @sections = []
       @graph = Graph.new(name, start_date, end_date)
     end
 
@@ -43,7 +44,7 @@ module Dartt
     end
 
     def section (title)
-
+      @sections << {:title => title, :start_index => @graph.elements.length}
     end
 
     def include?(obj)
@@ -51,6 +52,14 @@ module Dartt
     end
 
     def render
+      # Add all the sections.
+      @sections.each_with_index do |s, i|
+        end_index = @graph.elements.length - 1
+        unless @sections[i+1].nil?
+          end_index = @sections[i+1][:start_index] - 1
+        end
+        @graph.add_section(s[:title], s[:start_index], end_index)
+      end
       @graph.render
     end
   end
