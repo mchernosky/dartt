@@ -1,6 +1,9 @@
 # Dartt
 
-Dartt is a tool for generating Gantt charts. Decribe your task with a Ruby internal DSL and generate Gantt chart images.
+Dartt is a tool for generating Gantt charts.
+
+You can describe your project tasks and milestones with a Ruby internal DSL and generate Gantt chart images.
+It focuses on using simple dependencies and task lengths for defining everything, and most of the the chart options and layout are configurable.
 
 For example, this code:
 
