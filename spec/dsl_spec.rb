@@ -100,9 +100,15 @@ RSpec.describe Dartt::Chart do
   end
 
   it "can render a chart in one command" do
-      Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 4, 18), "spec/images/svg-chart" do
-        t = task "First Task", start: Date.new(2021, 1, 4), days: 3
-        milestone "First Task Complete", after: t
+      Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "spec/images/svg-chart" do
+        section "Phase 1"
+        first_task = task "First Task", start: Date.new(2021, 1, 4), days: 20
+        second_task = task "Second Task", after: first_task, days: 20
+        milestone "Phase 1 Comlete", after: second_task
+
+        section "Phase 2"
+        final_task = task "Final Task", after: second_task, days: 10
+        milestone "Phase 2 Complete", after: final_task
       end
       expect(File.exist?("spec/images/svg-chart.svg")).to be(true)
   end

@@ -1,0 +1,236 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg viewBox="0 0 1920 1080" font-family="arial" font-size="40" fill="white" text-anchor="middle" dominant-baseline="middle" width="100%" height="100%" 
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+<text x="960" y="54" fill="#003470">
+The Schedule
+</text>
+<rect x="0%" y="108" width="100%" height="120" fill="#FFFDA2"/>
+<text x="20" y="168" text-anchor="start" fill="black" font-size="24">
+Phase 1
+</text>
+<rect x="0%" y="228" width="100%" height="80" fill="white"/>
+<text x="20" y="268" text-anchor="start" fill="black" font-size="24">
+Phase 2
+</text>
+<line x1="300" y1="108" x2="300" y2="1000" stroke="#C1C1C1"/>
+<line x1="319.2857142857143" y1="108" x2="319.2857142857143" y2="1000" stroke="#C1C1C1"/>
+<line x1="338.57142857142856" y1="108" x2="338.57142857142856" y2="1000" stroke="#C1C1C1"/>
+<line x1="357.85714285714283" y1="108" x2="357.85714285714283" y2="1000" stroke="#C1C1C1"/>
+<line x1="377.1428571428571" y1="108" x2="377.1428571428571" y2="1000" stroke="#C1C1C1"/>
+<rect x="396.4285714285714" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="396.4285714285714" y1="108" x2="396.4285714285714" y2="1000" stroke="#C1C1C1"/>
+<rect x="415.71428571428567" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="415.71428571428567" y1="108" x2="415.71428571428567" y2="1000" stroke="#C1C1C1"/>
+<line x1="434.99999999999994" y1="108" x2="434.99999999999994" y2="1000" stroke="#C1C1C1"/>
+<line x1="454.2857142857142" y1="108" x2="454.2857142857142" y2="1000" stroke="#C1C1C1"/>
+<line x1="473.5714285714285" y1="108" x2="473.5714285714285" y2="1000" stroke="#C1C1C1"/>
+<line x1="492.8571428571428" y1="108" x2="492.8571428571428" y2="1000" stroke="#C1C1C1"/>
+<line x1="512.1428571428571" y1="108" x2="512.1428571428571" y2="1000" stroke="#C1C1C1"/>
+<rect x="531.4285714285714" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="531.4285714285714" y1="108" x2="531.4285714285714" y2="1000" stroke="#C1C1C1"/>
+<rect x="550.7142857142858" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="550.7142857142858" y1="108" x2="550.7142857142858" y2="1000" stroke="#C1C1C1"/>
+<line x1="570.0000000000001" y1="108" x2="570.0000000000001" y2="1000" stroke="#C1C1C1"/>
+<line x1="589.2857142857144" y1="108" x2="589.2857142857144" y2="1000" stroke="#C1C1C1"/>
+<line x1="608.5714285714288" y1="108" x2="608.5714285714288" y2="1000" stroke="#C1C1C1"/>
+<line x1="627.8571428571431" y1="108" x2="627.8571428571431" y2="1000" stroke="#C1C1C1"/>
+<line x1="647.1428571428575" y1="108" x2="647.1428571428575" y2="1000" stroke="#C1C1C1"/>
+<rect x="666.4285714285718" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="666.4285714285718" y1="108" x2="666.4285714285718" y2="1000" stroke="#C1C1C1"/>
+<rect x="685.7142857142861" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="685.7142857142861" y1="108" x2="685.7142857142861" y2="1000" stroke="#C1C1C1"/>
+<line x1="705.0000000000005" y1="108" x2="705.0000000000005" y2="1000" stroke="#C1C1C1"/>
+<line x1="724.2857142857148" y1="108" x2="724.2857142857148" y2="1000" stroke="#C1C1C1"/>
+<line x1="743.5714285714291" y1="108" x2="743.5714285714291" y2="1000" stroke="#C1C1C1"/>
+<line x1="762.8571428571435" y1="108" x2="762.8571428571435" y2="1000" stroke="#C1C1C1"/>
+<line x1="782.1428571428578" y1="108" x2="782.1428571428578" y2="1000" stroke="#C1C1C1"/>
+<rect x="801.4285714285721" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="801.4285714285721" y1="108" x2="801.4285714285721" y2="1000" stroke="#C1C1C1"/>
+<rect x="820.7142857142865" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="820.7142857142865" y1="108" x2="820.7142857142865" y2="1000" stroke="#C1C1C1"/>
+<line x1="840.0000000000008" y1="108" x2="840.0000000000008" y2="1000" stroke="#C1C1C1"/>
+<line x1="859.2857142857151" y1="108" x2="859.2857142857151" y2="1000" stroke="#C1C1C1"/>
+<line x1="878.5714285714295" y1="108" x2="878.5714285714295" y2="1000" stroke="#C1C1C1"/>
+<line x1="897.8571428571438" y1="108" x2="897.8571428571438" y2="1000" stroke="#C1C1C1"/>
+<line x1="917.1428571428581" y1="108" x2="917.1428571428581" y2="1000" stroke="#C1C1C1"/>
+<rect x="936.4285714285725" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="936.4285714285725" y1="108" x2="936.4285714285725" y2="1000" stroke="#C1C1C1"/>
+<rect x="955.7142857142868" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="955.7142857142868" y1="108" x2="955.7142857142868" y2="1000" stroke="#C1C1C1"/>
+<line x1="975.0000000000011" y1="108" x2="975.0000000000011" y2="1000" stroke="#C1C1C1"/>
+<line x1="994.2857142857155" y1="108" x2="994.2857142857155" y2="1000" stroke="#C1C1C1"/>
+<line x1="1013.5714285714298" y1="108" x2="1013.5714285714298" y2="1000" stroke="#C1C1C1"/>
+<line x1="1032.857142857144" y1="108" x2="1032.857142857144" y2="1000" stroke="#C1C1C1"/>
+<line x1="1052.1428571428582" y1="108" x2="1052.1428571428582" y2="1000" stroke="#C1C1C1"/>
+<rect x="1071.4285714285725" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1071.4285714285725" y1="108" x2="1071.4285714285725" y2="1000" stroke="#C1C1C1"/>
+<rect x="1090.7142857142867" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1090.7142857142867" y1="108" x2="1090.7142857142867" y2="1000" stroke="#C1C1C1"/>
+<line x1="1110.000000000001" y1="108" x2="1110.000000000001" y2="1000" stroke="#C1C1C1"/>
+<line x1="1129.2857142857151" y1="108" x2="1129.2857142857151" y2="1000" stroke="#C1C1C1"/>
+<line x1="1148.5714285714294" y1="108" x2="1148.5714285714294" y2="1000" stroke="#C1C1C1"/>
+<line x1="1167.8571428571436" y1="108" x2="1167.8571428571436" y2="1000" stroke="#C1C1C1"/>
+<line x1="1187.1428571428578" y1="108" x2="1187.1428571428578" y2="1000" stroke="#C1C1C1"/>
+<rect x="1206.428571428572" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1206.428571428572" y1="108" x2="1206.428571428572" y2="1000" stroke="#C1C1C1"/>
+<rect x="1225.7142857142862" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1225.7142857142862" y1="108" x2="1225.7142857142862" y2="1000" stroke="#C1C1C1"/>
+<line x1="1245.0000000000005" y1="108" x2="1245.0000000000005" y2="1000" stroke="#C1C1C1"/>
+<line x1="1264.2857142857147" y1="108" x2="1264.2857142857147" y2="1000" stroke="#C1C1C1"/>
+<line x1="1283.571428571429" y1="108" x2="1283.571428571429" y2="1000" stroke="#C1C1C1"/>
+<line x1="1302.8571428571431" y1="108" x2="1302.8571428571431" y2="1000" stroke="#C1C1C1"/>
+<line x1="1322.1428571428573" y1="108" x2="1322.1428571428573" y2="1000" stroke="#C1C1C1"/>
+<rect x="1341.4285714285716" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1341.4285714285716" y1="108" x2="1341.4285714285716" y2="1000" stroke="#C1C1C1"/>
+<rect x="1360.7142857142858" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1360.7142857142858" y1="108" x2="1360.7142857142858" y2="1000" stroke="#C1C1C1"/>
+<line x1="1380.0" y1="108" x2="1380.0" y2="1000" stroke="#C1C1C1"/>
+<line x1="1399.2857142857142" y1="108" x2="1399.2857142857142" y2="1000" stroke="#C1C1C1"/>
+<line x1="1418.5714285714284" y1="108" x2="1418.5714285714284" y2="1000" stroke="#C1C1C1"/>
+<line x1="1437.8571428571427" y1="108" x2="1437.8571428571427" y2="1000" stroke="#C1C1C1"/>
+<line x1="1457.1428571428569" y1="108" x2="1457.1428571428569" y2="1000" stroke="#C1C1C1"/>
+<rect x="1476.428571428571" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1476.428571428571" y1="108" x2="1476.428571428571" y2="1000" stroke="#C1C1C1"/>
+<rect x="1495.7142857142853" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1495.7142857142853" y1="108" x2="1495.7142857142853" y2="1000" stroke="#C1C1C1"/>
+<line x1="1514.9999999999995" y1="108" x2="1514.9999999999995" y2="1000" stroke="#C1C1C1"/>
+<line x1="1534.2857142857138" y1="108" x2="1534.2857142857138" y2="1000" stroke="#C1C1C1"/>
+<line x1="1553.571428571428" y1="108" x2="1553.571428571428" y2="1000" stroke="#C1C1C1"/>
+<line x1="1572.8571428571422" y1="108" x2="1572.8571428571422" y2="1000" stroke="#C1C1C1"/>
+<line x1="1592.1428571428564" y1="108" x2="1592.1428571428564" y2="1000" stroke="#C1C1C1"/>
+<rect x="1611.4285714285706" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1611.4285714285706" y1="108" x2="1611.4285714285706" y2="1000" stroke="#C1C1C1"/>
+<rect x="1630.7142857142849" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1630.7142857142849" y1="108" x2="1630.7142857142849" y2="1000" stroke="#C1C1C1"/>
+<line x1="1649.999999999999" y1="108" x2="1649.999999999999" y2="1000" stroke="#C1C1C1"/>
+<line x1="1669.2857142857133" y1="108" x2="1669.2857142857133" y2="1000" stroke="#C1C1C1"/>
+<line x1="1688.5714285714275" y1="108" x2="1688.5714285714275" y2="1000" stroke="#C1C1C1"/>
+<line x1="1707.8571428571418" y1="108" x2="1707.8571428571418" y2="1000" stroke="#C1C1C1"/>
+<line x1="1727.142857142856" y1="108" x2="1727.142857142856" y2="1000" stroke="#C1C1C1"/>
+<rect x="1746.4285714285702" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1746.4285714285702" y1="108" x2="1746.4285714285702" y2="1000" stroke="#C1C1C1"/>
+<rect x="1765.7142857142844" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1765.7142857142844" y1="108" x2="1765.7142857142844" y2="1000" stroke="#C1C1C1"/>
+<line x1="1784.9999999999986" y1="108" x2="1784.9999999999986" y2="1000" stroke="#C1C1C1"/>
+<line x1="1804.2857142857129" y1="108" x2="1804.2857142857129" y2="1000" stroke="#C1C1C1"/>
+<line x1="1823.571428571427" y1="108" x2="1823.571428571427" y2="1000" stroke="#C1C1C1"/>
+<line x1="1842.8571428571413" y1="108" x2="1842.8571428571413" y2="1000" stroke="#C1C1C1"/>
+<line x1="1862.1428571428555" y1="108" x2="1862.1428571428555" y2="1000" stroke="#C1C1C1"/>
+<rect x="1881.4285714285697" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1881.4285714285697" y1="108" x2="1881.4285714285697" y2="1000" stroke="#C1C1C1"/>
+<rect x="1900.714285714284" y="108" width="19.285714285714285" height="892" fill="#E0E0E0"/>
+<line x1="1900.714285714284" y1="108" x2="1900.714285714284" y2="1000" stroke="#C1C1C1"/>
+<line x1="1919.9999999999982" y1="108" x2="1919.9999999999982" y2="1000" stroke="#C1C1C1"/>
+<rect x="300.0" y="1032" width="540.0" height="48" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="570.0" y="1056" font-size="20" fill="#003470">
+Jan
+</text>
+<rect x="840.0" y="1032" width="540.0" height="48" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1110.0" y="1056" font-size="20" fill="#003470">
+Feb
+</text>
+<rect x="1380.0" y="1032" width="540.0" height="48" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1650.0" y="1056" font-size="20" fill="#003470">
+Mar
+</text>
+<rect x="300.0" y="1000" width="0.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="305.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+4
+</text>
+<rect x="300.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="305.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+4
+</text>
+<rect x="435.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="440.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+11
+</text>
+<rect x="570.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="575.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+18
+</text>
+<rect x="705.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="710.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+25
+</text>
+<rect x="840.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="845.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+1
+</text>
+<rect x="975.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="980.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+8
+</text>
+<rect x="1110.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1115.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+15
+</text>
+<rect x="1245.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1250.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+22
+</text>
+<rect x="1380.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1385.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+1
+</text>
+<rect x="1515.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1520.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+8
+</text>
+<rect x="1650.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1655.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+15
+</text>
+<rect x="1785.0" y="1000" width="135.0" height="32" stroke="white" fill="#D7D7D7" stroke-width="2"/>
+<text x="1790.0" y="1016" font-size="20" fill="#003470" text-anchor="start">
+22
+</text>
+<g class="task">
+<rect x="300.0" y="111" width="501.4285714285714" height="34" rx="5" fill="#77B7FF" stroke="#0D57AB" stroke-width="2"/>
+<text x="550.7142857142857" y="129" font-size="20" fill="#003470">
+First Task
+</text>
+</g>
+<g class="task">
+<rect x="840.0" y="151" width="501.4285714285714" height="34" rx="5" fill="#77B7FF" stroke="#0D57AB" stroke-width="2"/>
+<text x="1090.7142857142858" y="169" font-size="20" fill="#003470">
+Second Task
+</text>
+</g>
+<rect x="1328.7006493672134" y="195.27207793864216" width="25.45584412271571" height="25.45584412271571" fill="#77B7FF" stroke="#0D57AB" stroke-width="2" transform="rotate (45 1341.4285714285713 208)" rx="4"/>
+<text x="1364.7006493672134" y="209" font-size="20" fill="#003470" text-anchor="start">
+Phase 1 Comlete
+</text>
+<g class="task">
+<rect x="1380.0" y="231" width="231.42857142857142" height="34" rx="5" fill="#77B7FF" stroke="#0D57AB" stroke-width="2"/>
+<text x="1495.7142857142858" y="249" font-size="20" fill="#003470">
+Final Task
+</text>
+</g>
+<rect x="1598.7006493672134" y="275.27207793864216" width="25.45584412271571" height="25.45584412271571" fill="#77B7FF" stroke="#0D57AB" stroke-width="2" transform="rotate (45 1611.4285714285713 288)" rx="4"/>
+<text x="1634.7006493672134" y="289" font-size="20" fill="#003470" text-anchor="start">
+Phase 2 Complete
+</text>
+<script type="text/javascript">
+
+          const tasks = document.getElementsByClassName('task');
+          for (i = 0; i &lt; tasks.length; i++) {
+            const bar = tasks[i].children[0];
+            var text = tasks[i].children[1];
+            const bar_length = parseFloat(bar.getAttribute("width"));
+            const text_length = text.getComputedTextLength();
+            if (text_length &gt; bar_length) {
+              const text_x_position = parseFloat(text.getAttribute("x"));
+              text.setAttribute("text-anchor", "start");
+              text.setAttribute("x", text_x_position + (bar_length/2) + 8);
+            }
+          }
+        
+</script>
+
+</svg>
