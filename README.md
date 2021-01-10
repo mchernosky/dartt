@@ -46,13 +46,15 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+### Creating charts
+
 ### Tasks
 
 ### Milestones
 
 ### Rendering options
 
-### Custom Configuration
+### Custom configuration
 
 ## Development
 
