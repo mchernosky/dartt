@@ -1,8 +1,15 @@
 # Dartt
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dartt`. To experiment with that code, run `bin/console` for an interactive prompt.
+Dartt is a tool for generating Gantt charts. Decribe your task with a Ruby internal DSL and generate Gantt chart images.
 
-TODO: Delete this and the text above, and describe your gem
+```ruby
+require 'dartt'
+require 'date'
+
+Dartt.svg "blah" do
+  
+end
+```
 
 ## Installation
 
@@ -51,6 +58,7 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 - Automatic chart sizing.
 - Reference chart start/end for task dates.
 - Allow dependencies on more than one task.
+- Dates can be specified as strings instead of objects.
 
 ### Errors to handle
 

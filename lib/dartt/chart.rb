@@ -70,5 +70,10 @@ module Dartt
     c
   end
 
-  module_function :chart
+  def svg (name, start_date, end_date, filename, &block)
+    c = chart(name, start_date, end_date, &block)
+    File.open("#{filename}.svg", "w") { |f| f.write(c.render) }
+  end
+
+  module_function :chart, :svg
 end

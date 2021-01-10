@@ -1,6 +1,5 @@
 
-require "dartt/graph"
-require "dartt/task"
+require "dartt"
 
 RSpec.describe Dartt::Chart do
   it "can create a chart" do
@@ -98,5 +97,13 @@ RSpec.describe Dartt::Chart do
       milestone "First Task Complete", after: t
     end
     expect(c).to include(Dartt::Milestone.new("First Task Complete", Date.new(2021, 1, 6)))
+  end
+
+  it "can render a chart in one command" do
+      Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 4, 18), "spec/images/svg-chart" do
+        t = task "First Task", start: Date.new(2021, 1, 4), days: 3
+        milestone "First Task Complete", after: t
+      end
+      expect(File.exist?("spec/images/svg-chart.svg")).to be(true)
   end
 end
