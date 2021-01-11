@@ -12,10 +12,17 @@ module Dartt
       @graph.title
     end
 
-    def task (name, start: nil, days: nil, before: nil, after: nil)
+    def task (name, start: nil, end: nil, days: nil, before: nil, after: nil)
+
+      # Parse the end argument separately into a different name because "end" is pretty tricky to use.
+      end_date = binding.local_variable_get(:end)
+
       new_task = Task.new(name)
       unless start.nil?
         new_task = new_task.start(start)
+      end
+      unless end_date.nil?
+        new_task = new_task.end(end_date)
       end
       unless days.nil?
         new_task = new_task.duration(days)
