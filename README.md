@@ -81,6 +81,8 @@ This allows you to define tasks relative to other tasks, e.g. before or after ot
 
 Some ways to define tasks include:
 
+| Definition | Example |
+| --- | --- |
 | A start date and duration | `task "Task 1", start: Date.new(2021, 1, 6), days: 3` |
 | A start date and an end date | `task "Task 2", start: Date.new(2021, 1, 6), end: Date.new(2021, 1, 8)` |
 | An end date and duration | `task "Task 3", end: Date.new(2021, 1, 8), days: 3` |
