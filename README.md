@@ -77,14 +77,26 @@ All tasks and milestones drawn in the order in which they are listed in the char
 
 Tasks are created using the `task` command.
 The task command takes a variety of arguments to specify the start and end of a task.
-This allows you to define tasks relative to other tasks, e.g. before or after other tasks. 
+This allows you to define tasks relative to other tasks, e.g. before or after other tasks.
+
+Some ways to define tasks include:
+
+| A start date and duration | `task "Task 1", start: Date.new(2021, 1, 6), days: 3` |
+| A start date and an end date | `task "Task 2", start: Date.new(2021, 1, 6), end: Date.new(2021, 1, 8)` |
+| An end date and duration | `task "Task 3", end: Date.new(2021, 1, 8), days: 3` |
+| After another task (with duration) | `task "Task 4", after: some_other_task, days: 3` |
+| After another task (with end date) | `task "Task 4", after: some_other_task, end: Date.new(2021, 1, 8)` |
+| Before another task (with duration) | `task "Task 5", before: some_other_task, days: 3` |
+| Before another task (with start date) | `task "Task 5", start: Date.new(2021, 1, 6), before: some_other_task, days: 3` |
 
 ### Milestones
 
 ### Sections
 
 
-### Rendering options
+### A note on dates
+
+
 
 ### Custom configuration
 
