@@ -93,14 +93,55 @@ Some ways to define tasks include:
 
 ### Milestones
 
+Milestones are defined with the `milestone` command.
+
+Milestones can either be added with a specific date:
+
+```ruby
+milestone "v1.0 Delivery", Date.new(2021, 1, 8)
+```
+
+Or after some other task:
+
+```ruby
+milestone "v1.0 Delivery", after: some_other_task
+```
+
 ### Sections
 
+Sections group tasks and milestones together.
+Sections are created with the `section` command.
+All tasks and milestones added after defining a section are added to it until a new section is added.
+
+```ruby
+section "Section 1"
+# All tasks and milestones added here are included in section 1.
+
+section "Section 2"
+# All tasks and milestones added here are included in section 1.
+```
 
 ### A note on dates
 
+All dates are "inclusive," for example:
 
+- A task which begins on Jan 4 and lasts 2 days will end on Jan 5.
+- A task with begins on Jan 4 and ends on Jan 5 has a duration of 2 days. 
+
+When these tasks are drawn on the chart they will occupy two days worth of space.
+
+The "end date" of both of these tasks is Jan 5.
+If you started a new task on this end date, both tasks would overlap for a day (on Jan 5).
+When defining a task relatively (with `before:` or )
+
+### Weekends
+
+By default, weekends are not included in any scheduling.
+When calculating durations, weekends are skipped.
+If a task is defined with a date that falls on a weekend, it is moved to the next weekday.
 
 ### Custom configuration
+
 
 ## Development
 
