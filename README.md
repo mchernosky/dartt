@@ -5,13 +5,15 @@ Dartt is a tool for generating Gantt charts from Ruby code.
 You can describe your project tasks and milestones with a Ruby internal DSL and generate Gantt chart images.
 It focuses on using simple dependencies and task lengths for defining everything, and most of the the chart options and layout are configurable.
 
+Charts are generated as SVG images.
+
 For example, this code:
 
 ```ruby
 require 'dartt'
 require 'date'
 
-Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "spec/images/svg-chart" do
+Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "svg-chart" do
     section "Phase 1"
     first_task = task "First Task", start: Date.new(2021, 1, 4), days: 20
     second_task = task "Second Task", after: first_task, days: 20
@@ -47,6 +49,24 @@ Or install it yourself as:
 TODO: Write usage instructions here
 
 ### Creating charts
+
+Create charts by requiring the `dartt` module and using the `svg` function of the module.
+The arguments to the `svg` function are:
+
+- `title` - The title of the chart.
+- `start_date` - The first day of the chart.
+- `end_date` - The last day of the chart.
+- `filename` - The name of the svg file to create (do not include the `.svg` extension).
+
+Note: The dates are provided as Ruby `Date` objects, so you will need to `require 'date'` as well.
+
+The `svg` function takes a block will contain the chart.
+
+```ruby
+Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "svg-chart" do 
+  # Define your tasks and milestones here.
+end
+```
 
 ### Tasks
 
