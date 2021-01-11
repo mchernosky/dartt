@@ -46,11 +46,14 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
-
 ### Creating charts
 
 Create charts by requiring the `dartt` module and using the `svg` function of the module.
+
+```ruby
+Dartt.svg (title, start_date, end_date, filename) 
+```
+
 The arguments to the `svg` function are:
 
 - `title` - The title of the chart.
@@ -68,9 +71,18 @@ Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "svg-char
 end
 ```
 
+All tasks and milestones drawn in the order in which they are listed in the chart.
+
 ### Tasks
 
+Tasks are created using the `task` command.
+The task command takes a variety of arguments to specify the start and end of a task.
+This allows you to define tasks relative to other tasks, e.g. before or after other tasks. 
+
 ### Milestones
+
+### Sections
+
 
 ### Rendering options
 
@@ -97,6 +109,8 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 
 ## TODO
 
+- Add `end` option to tasks.
+- Remove section header area if there are no sections.
 - Make section transparency configurable.
 - Individual day highlighting.
 - Custom styling for custom tags.
