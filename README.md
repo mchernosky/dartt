@@ -167,12 +167,12 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 
 - Remove section header area if there are no sections.
 - Make section transparency configurable.
-- Individual day highlighting.
 - Custom styling for custom tags.
 - Automatic chart sizing.
 - Reference chart start/end for task dates.
 - Allow dependencies on more than one task.
 - Dates can be specified as strings instead of objects.
+- Individual day highlighting.
 
 ### Errors to handle
 
