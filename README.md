@@ -82,7 +82,7 @@ This allows you to define tasks relative to other tasks, e.g. before or after ot
 Some ways to define tasks include:
 
 | Definition | Example |
-| --- | --- |
+| ---------- | ------- |
 | A start date and duration | `task "Task 1", start: Date.new(2021, 1, 6), days: 3` |
 | A start date and an end date | `task "Task 2", start: Date.new(2021, 1, 6), end: Date.new(2021, 1, 8)` |
 | An end date and duration | `task "Task 3", end: Date.new(2021, 1, 8), days: 3` |
@@ -118,7 +118,7 @@ section "Section 1"
 # All tasks and milestones added here are included in section 1.
 
 section "Section 2"
-# All tasks and milestones added here are included in section 1.
+# All tasks and milestones added here are included in section 2.
 ```
 
 ### A note on dates
@@ -132,7 +132,7 @@ When these tasks are drawn on the chart they will occupy two days worth of space
 
 The "end date" of both of these tasks is Jan 5.
 If you started a new task on this end date, both tasks would overlap for a day (on Jan 5).
-When defining a task relatively (with `before:` or )
+When defining a task relatively (with `before:` or `after:`) the relative task is defined such that it does not overlap with the other task.
 
 ### Weekends
 
@@ -142,6 +142,7 @@ If a task is defined with a date that falls on a weekend, it is moved to the nex
 
 ### Custom configuration
 
+TODO
 
 ## Development
 
@@ -164,7 +165,6 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 
 ## TODO
 
-- Add `end` option to tasks.
 - Remove section header area if there are no sections.
 - Make section transparency configurable.
 - Individual day highlighting.
