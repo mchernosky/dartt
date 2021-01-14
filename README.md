@@ -165,8 +165,6 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 
 ## TODO
 
-- Remove section header area if there are no sections.
-- Make section transparency configurable.
 - Custom styling for custom tags.
 - Automatic chart sizing.
 - Reference chart start/end for task dates.

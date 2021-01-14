@@ -17,7 +17,9 @@ module Dartt
             :width => 300,
             :margin => 20,
             :color_1 => '#FFFDA2',
+            :color_1_opacity => 0.4,
             :color_2 => 'white',
+            :color_2_opacity => 0.0,
         },
         :axis => {
             :height => 80,
@@ -82,9 +84,6 @@ module Dartt
 
     def render
 
-      #Sections
-      @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
-
       # Grid lines
       x_position = get_section_width
       (@start_date..@end_date).each do |day|
@@ -94,6 +93,9 @@ module Dartt
         @svg.line x1:x_position, y1:@config[:title][:height], x2:x_position, y2:@config[:height] - @config[:axis][:height], stroke:@config[:axis][:grid_line_color]
         x_position += @day_width_px
       end
+
+      #Sections
+      @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
 
       # Draw months.
       current_month = @start_date.month
@@ -174,10 +176,12 @@ module Dartt
       y = @config[:title][:height] + start_row*@config[:task][:height]
       height = (end_row-start_row+1)*@config[:task][:height]
       fill = @config[:section][:color_1]
+      opacity = @config[:section][:color_1_opacity]
       if index % 2 == 1
         fill = @config[:section][:color_2]
+        opacity = @config[:section][:color_2_opacity]
       end
-      @svg.rect x: "0%", y: y, width: "100%", height: height, fill: fill
+      @svg.rect x: "0%", y: y, width: "100%", height: height, fill: fill, fill_opacity: opacity
       @svg.text name, x:@config[:section][:margin], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
     end
 
