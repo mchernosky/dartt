@@ -63,7 +63,7 @@ module Dartt
       @sections = []
       @elements = []
 
-      @day_width_px = (@config[:width] - @config[:section][:width]).to_f / @total_days
+      @day_width_px = (@config[:width] - get_section_width).to_f / @total_days
 
       @svg = Victor::SVG.new viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
 
@@ -86,7 +86,7 @@ module Dartt
       @sections.each_with_index { |s, i| draw_section(i, s[:name], s[:start_row], s[:end_row]) }
 
       # Grid lines
-      x_position = @config[:section][:width]
+      x_position = get_section_width
       (@start_date..@end_date).each do |day|
         if day.saturday? || day.sunday? and not day == @end_date
           @svg.rect x:x_position, y:@config[:title][:height], width:@day_width_px, height:@config[:height] - @config[:title][:height] - @config[:axis][:height], fill:@config[:axis][:weekend_color]
@@ -101,7 +101,7 @@ module Dartt
       (@start_date..@end_date).each do |day|
         if day.month != current_month || day == @end_date
           # This is the start of a new month. Draw the previous month.
-          x = @config[:section][:width] + ((current_month_start_day - @start_date).to_i) * @day_width_px
+          x = get_section_width + ((current_month_start_day - @start_date).to_i) * @day_width_px
           y = @config[:height] - @config[:axis][:height] + @config[:axis][:week_height]
           width = (day - current_month_start_day).to_i * @day_width_px
           height = @config[:axis][:height] - @config[:axis][:week_height]
@@ -118,7 +118,7 @@ module Dartt
       (@start_date..@end_date).each do |day|
         if day.monday? || (day == @end_date)
           # This is the start of a new week. Draw the previous week.
-          x = @config[:section][:width] + ((current_week_start_day - @start_date).to_i) * @day_width_px
+          x = get_section_width + ((current_week_start_day - @start_date).to_i) * @day_width_px
           y = @config[:height] - @config[:axis][:height]
           width = (day - current_week_start_day).to_i * @day_width_px
           height = @config[:axis][:week_height]
@@ -162,6 +162,14 @@ module Dartt
 
     private
 
+    def get_section_width
+      if @sections.empty?
+        0
+      else
+        @config[:section][:width]
+      end
+    end
+
     def draw_section(index, name, start_row, end_row)
       y = @config[:title][:height] + start_row*@config[:task][:height]
       height = (end_row-start_row+1)*@config[:task][:height]
@@ -176,7 +184,7 @@ module Dartt
     def draw_task(name, row, start_day, duration)
       task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@config[:width]*100
 
-      x = @config[:section][:width] + ((start_day - 1) * @day_width_px) + @config[:task][:horizontal_margin]
+      x = get_section_width + ((start_day - 1) * @day_width_px) + @config[:task][:horizontal_margin]
       y = @config[:title][:height]
       y += (row * @config[:task][:height]) + @config[:task][:vertical_margin]
 
@@ -195,7 +203,7 @@ module Dartt
       milestone_height = @config[:milestone][:height] - 2*@config[:milestone][:vertical_margin]
       milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
 
-      section_width_px = @config[:section][:width]
+      section_width_px = get_section_width
       title_height_px = @config[:title][:height]
 
       milestone_center_x = section_width_px + day * @day_width_px

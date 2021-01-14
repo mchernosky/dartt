@@ -72,4 +72,13 @@ RSpec.describe Dartt::Graph do
     save_svg(chart.render,"three-month-project")
   end
 
+  it "can create a chart without sections" do
+    chart = Dartt::Graph.new("Task and Milestone", Date.new(2021, 1, 4), Date.new(2021, 1, 24))
+    chart.add(Dartt::Task.new("My Task")
+                  .start(Date.new(2021, 1, 4))
+                  .duration(3))
+    chart.add(Dartt::Milestone.new("Milestone", Date.new(2021, 1, 6)))
+    save_svg(chart.render,"no-sections")
+  end
+
 end
