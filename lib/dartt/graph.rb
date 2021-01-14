@@ -65,8 +65,6 @@ module Dartt
       @sections = []
       @elements = []
 
-      @day_width_px = (@config[:width] - get_section_width).to_f / @total_days
-
       @svg = Victor::SVG.new viewBox: "0 0 #{@config[:width]} #{@config[:height]}", font_family: 'arial', font_size: 40, fill: "white", text_anchor:"middle", dominant_baseline:"middle"
 
       # Draw the title.
@@ -83,6 +81,7 @@ module Dartt
     end
 
     def render
+      @day_width_px = (@config[:width] - get_section_width).to_f / @total_days
 
       # Grid lines
       x_position = get_section_width
