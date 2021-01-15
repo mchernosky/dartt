@@ -83,4 +83,5 @@ module Dartt
   end
 
   module_function :chart, :svg
+
 end

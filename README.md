@@ -171,6 +171,8 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 - Allow dependencies on more than one task.
 - Dates can be specified as strings instead of objects.
 - Individual day highlighting.
+- Shift text to left at end of chart.
+- Built in PNG conversion.
 
 ### Errors to handle
 
