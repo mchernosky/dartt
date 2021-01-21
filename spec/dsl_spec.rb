@@ -91,7 +91,7 @@ RSpec.describe Dartt::Chart do
 
   it "can add a milestone" do
     c = Dartt.chart "The Schedule" do
-      milestone "v1.0 Delivery", Date.new(2021, 1, 7)
+      milestone "v1.0 Delivery", date: Date.new(2021, 1, 7)
     end
 
     expect(c).to include(Dartt::Milestone.new("v1.0 Delivery", Date.new(2021, 1, 7)))
@@ -99,7 +99,7 @@ RSpec.describe Dartt::Chart do
 
   it "can add a task after a milestone" do
     c = Dartt.chart "The Schedule" do
-      start = milestone "Start", Date.new(2021, 1, 4)
+      start = milestone "Start", date: Date.new(2021, 1, 4)
       task "First Task", after: start, days: 3
     end
     expect(c).to include(Dartt::Task.new("First Task").start(Date.new(2021, 1, 5)).duration(3))
@@ -128,8 +128,27 @@ RSpec.describe Dartt::Chart do
   end
 
   it "can add a tag to a task" do
-    c = Dartt.chart "Project" do
+    Dartt.chart "Project" do
       task "A Task", :done
+    end
+  end
+
+  it "can add a tag to a task with other parameters" do
+    Dartt.chart "Project" do
+      task "A Task", :done, start: Date.new(2021, 1, 4), days: 5
+    end
+  end
+
+  it "can add a tag to a milestone" do
+    Dartt.chart "Project" do
+      milestone "A Milestone", :done, date: Date.new(2021, 1, 4)
+    end
+  end
+
+  it "can add a tag to a milestone after a task" do
+    Dartt.chart "The Schedule" do
+      t = task "First Task", start: Date.new(2021, 1, 4), days: 3
+      milestone "First Task Complete", :done, after: t
     end
   end
 end

@@ -37,11 +37,12 @@ module Dartt
       new_task
     end
 
-    def milestone (name, date)
-      if date.is_a?(Hash)
-        if date.include?(:after)
-          date = date[:after].end
-        end
+    def milestone (name, tag=nil, date: nil, after: nil)
+      unless tag.nil?
+        puts tag
+      end
+      unless after.nil?
+        date = after.end
       end
       new_milestone = Milestone.new(name, date)
       @graph.add(new_milestone)
