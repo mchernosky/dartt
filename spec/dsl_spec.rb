@@ -126,4 +126,10 @@ RSpec.describe Dartt::Chart do
       end
       expect(File.exist?("spec/images/svg-chart.svg")).to be(true)
   end
+
+  it "can add a tag to a task" do
+    c = Dartt.chart "Project" do
+      task "A Task", :done
+    end
+  end
 end

@@ -12,7 +12,7 @@ module Dartt
       @graph.title
     end
 
-    def task (name, start: nil, end: nil, days: nil, before: nil, after: nil)
+    def task (name, tag=nil, start: nil, end: nil, days: nil, before: nil, after: nil)
 
       # Parse the end argument separately into a different name because "end" is pretty tricky to use.
       end_date = binding.local_variable_get(:end)
