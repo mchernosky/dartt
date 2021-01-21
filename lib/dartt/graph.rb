@@ -149,10 +149,14 @@ module Dartt
       height = @config[:task][:height] - 2*@config[:task][:vertical_margin]
 
       @svg.g class: "task" do
-        @svg.rect x: x, y: y, width: width, height: height, rx: @config[:task][:rounding], fill: @config[:task][:fill],
-             stroke: @config[:task][:line], stroke_width: @config[:task][:line_weight]
-        @svg.text name, x: x + width/2, y: y + height/2 + 1, font_size: @config[:task][:font_size],
-             fill: @config[:task][:font_color]
+        @svg.rect x: x, y: y, width: width, height: height,
+                  rx: @config[:task][:rounding],
+                  fill: @config[:task][:fill],
+                  stroke: @config[:task][:line],
+                  stroke_width: @config[:task][:line_weight]
+        @svg.text name, x: x + width/2, y: y + height/2 + 1,
+                  font_size: @config[:task][:font_size],
+                  fill: @config[:task][:font_color]
       end
     end
 
@@ -170,14 +174,16 @@ module Dartt
 
       # Draw the milestone and rotate it to form a diamond.
       @svg.rect x:x, y:y, width:milestone_side, height:milestone_side,
-           fill: @config[:milestone][:fill],
-           stroke: @config[:milestone][:line],
-           stroke_width: @config[:milestone][:line_weight],
-           transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
-           rx: @config[:milestone][:rounding]
+                fill: @config[:milestone][:fill],
+                stroke: @config[:milestone][:line],
+                stroke_width: @config[:milestone][:line_weight],
+                transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
+                rx: @config[:milestone][:rounding]
 
-      @svg.text name, x: x + milestone_height, y: milestone_center_y + 1, font_size: @config[:task][:font_size],
-           fill: @config[:milestone][:font_color], text_anchor: 'start'
+      @svg.text name, x: x + milestone_height, y: milestone_center_y + 1,
+                text_anchor: 'start',
+                font_size: @config[:task][:font_size],
+                fill: @config[:milestone][:font_color]
     end
   end
 end
