@@ -37,12 +37,12 @@ module Dartt
       new_task
     end
 
-    def milestone (name, tag=nil, date: nil, after: nil)
-      unless tag.nil?
-        puts tag
-      end
+    def milestone (name, tag=nil, date: nil, after: nil, start_of: nil)
       unless after.nil?
         date = after.end
+      end
+      unless start_of.nil?
+        date = start_of - 1
       end
       new_milestone = Milestone.new(name, date)
       @graph.add(new_milestone)
