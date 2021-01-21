@@ -23,8 +23,4 @@ RSpec.describe Dartt::Milestone do
     expect(milestone.end).to eq(Date.new(2021, 1, 4))
   end
 
-  it "can be set to start at the beginning of a day" do
-    milestone = Dartt::Milestone.new("My Milestone", start_of: Date.new(2021, 1, 4))
-    expect(milestone.date + 1).to eq(Date.new(2021, 1, 4))
-  end
 end
