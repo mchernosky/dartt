@@ -9,8 +9,8 @@ c = Dartt.chart "The Schedule", Date.new(2021, 2, 18), Date.new(2021, 5, 20) do
 
   section "Design"
   kickoff =           milestone "Kickoff Unblocked", start_of: Date.new(2021, 2, 18)
-  register_review =   task "Interface spec review", after: kickoff, days: 5
-                      task "Technical design", after: kickoff, days: 10
+  register_review =   task "Interface spec review", :done, after: kickoff, days: 5
+                      task "Technical design", :done, after: kickoff, days: 10
   design_review =     task "Design review and collaboration", after: register_review, days: 5
                       milestone "Design approved", after: design_review
 

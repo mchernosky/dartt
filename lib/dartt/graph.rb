@@ -34,6 +34,16 @@ module Dartt
       @sections << {:name => name, :start_row => start_row, :end_row => end_row}
     end
 
+    def get_config(tag)
+      config = @config[:task]
+      unless tag.nil?
+        if @config[:tags].include?(tag)
+          config = config.merge(@config[:tags][tag])
+        end
+      end
+      config
+    end
+
     def render
       @day_width_px = (@config[:width] - get_section_width).to_f / @total_days
 
@@ -88,7 +98,7 @@ module Dartt
       @elements.each_with_index do |e, i|
         if e.is_a?(Task)
           duration = (e.end - e.start).to_i + 1
-          draw_task(e.name, i, (e.start - @start_date + 1).to_i, duration)
+          draw_task(e.name, i, (e.start - @start_date + 1).to_i, duration, get_config(e.tag))
         elsif e.is_a?(Milestone)
           draw_milestone(e.name, i, (e.date - @start_date + 1).to_i)
         end
@@ -138,7 +148,7 @@ module Dartt
       @svg.text name, x:@config[:section][:margin], y: y+height/2, text_anchor:'start', fill:'black', font_size: 24
     end
 
-    def draw_task(name, row, start_day, duration)
+    def draw_task(name, row, start_day, duration, config=@config[:task])
       task_horizontal_margin_percent = @config[:task][:horizontal_margin].to_f/@config[:width]*100
 
       x = get_section_width + ((start_day - 1) * @day_width_px) + @config[:task][:horizontal_margin]
@@ -150,13 +160,13 @@ module Dartt
 
       @svg.g class: "task" do
         @svg.rect x: x, y: y, width: width, height: height,
-                  rx: @config[:task][:rounding],
-                  fill: @config[:task][:fill],
-                  stroke: @config[:task][:line],
-                  stroke_width: @config[:task][:line_weight]
+                  rx: config[:rounding],
+                  fill: config[:fill],
+                  stroke: config[:line],
+                  stroke_width: config[:line_weight]
         @svg.text name, x: x + width/2, y: y + height/2 + 1,
-                  font_size: @config[:task][:font_size],
-                  fill: @config[:task][:font_color]
+                  font_size: config[:font_size],
+                  fill: config[:font_color]
       end
     end
 

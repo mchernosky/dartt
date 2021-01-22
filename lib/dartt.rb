@@ -75,6 +75,13 @@ module Dartt
           :fill => "#77B7FF",
           :line => "#0D57AB",
           :line_weight => 2,
+      },
+      :tags => {
+          :done => {
+              :font_color => "black",
+              :fill => "white",
+              :line => "black",
+          },
       }
   }
 

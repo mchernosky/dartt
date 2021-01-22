@@ -33,6 +33,9 @@ module Dartt
       unless after.nil?
         new_task = new_task.start(after.end + 1)
       end
+      unless tag.nil?
+        new_task = new_task.tag(tag)
+      end
       @graph.add(new_task)
       new_task
     end

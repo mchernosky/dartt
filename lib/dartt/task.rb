@@ -1,6 +1,7 @@
 module Dartt
   class Task
     attr_reader :name
+
     @@excluded_dates = []
 
     def self.exclude(date)
@@ -16,6 +17,15 @@ module Dartt
       @name  == other.name and
           get_start == other.start and
           get_duration == other.duration
+    end
+
+    def tag(tag=nil)
+      if tag.nil?
+        @tag
+      else
+        @tag = tag
+        self
+      end
     end
 
     def start(date = nil)
