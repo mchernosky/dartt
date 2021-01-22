@@ -123,7 +123,7 @@ module Dartt
             var text = tasks[i].children[1];
             const bar_length = parseFloat(bar.getAttribute("width"));
             const text_length = text.getComputedTextLength();
-            if (text_length > bar_length) {
+            if (text_length > (bar_length - 4)) {
               const text_x_position = parseFloat(text.getAttribute("x"));
               text.setAttribute("text-anchor", "start");
               text.setAttribute("x", text_x_position + (bar_length/2) + 8);
