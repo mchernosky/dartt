@@ -7,13 +7,17 @@ module Dartt
 
     attr_reader :title, :elements
 
+    def recursive_merge(a, b)
+        a.merge(b) {|key, a_item, b_item| recursive_merge(a_item, b_item) }
+    end
+
     def initialize (title, start_date, end_date, config:Dartt.default_config)
       @title = title
       # TODO: The end_date should be included on the chart.
       @total_days = (end_date - start_date).to_i
       @start_date = start_date
       @end_date = end_date
-      @config = config
+      @config = recursive_merge(config, Dartt.default_config)
 
       @day_width = 100.0/@total_days
       @sections = []

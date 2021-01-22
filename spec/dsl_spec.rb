@@ -1,5 +1,6 @@
 
-require "dartt"
+require 'dartt'
+require 'date'
 
 RSpec.describe Dartt::Chart do
   it "can create a chart" do
@@ -157,6 +158,28 @@ RSpec.describe Dartt::Chart do
     Dartt.chart "The Schedule" do
       t = task "First Task", start: Date.new(2021, 1, 4), days: 3
       milestone "First Task Complete", :done, after: t
+    end
+  end
+
+  it "can add a custom tag" do
+    custom_config = {
+        :tags => {
+            :red => {
+                :font_color => "white",
+                :fill => "red",
+                :line => "black",
+            },
+            :blue => {
+                :font_color => "blue",
+                :fill => "white",
+                :line => "blue",
+            }
+        }
+    }
+    Dartt.svg "The Schedule", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "spec/images/custom-tag", config: custom_config do
+      first_task = task "First Task", start: Date.new(2021, 1, 4), days: 20
+      second_task = task "Second Task", :red, after: first_task, days: 20
+      milestone "Phase 1 Complete", :blue, after: second_task
     end
   end
 end

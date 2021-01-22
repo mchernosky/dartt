@@ -3,9 +3,9 @@ require 'dartt/graph'
 module Dartt
   class Chart
     attr_reader :name
-    def initialize (name, start_date, end_date)
+    def initialize (name, start_date, end_date, config:Dartt.default_config)
       @sections = []
-      @graph = Graph.new(name, start_date, end_date)
+      @graph = Graph.new(name, start_date, end_date, config: config)
     end
 
     def name
@@ -73,16 +73,16 @@ module Dartt
     end
   end
 
-  def chart(name, start_date = Date.new(2021, 1, 4), end_date = Date.new(2021, 1, 14), &block)
-    c = Chart.new(name, start_date, end_date)
+  def chart(name, start_date = Date.new(2021, 1, 4), end_date = Date.new(2021, 1, 14), config: @@default_config, &block)
+    c = Chart.new(name, start_date, end_date, config: config)
     if block_given?
       c.instance_eval(&block)
     end
     c
   end
 
-  def svg (name, start_date, end_date, filename, &block)
-    c = chart(name, start_date, end_date, &block)
+  def svg (name, start_date, end_date, filename, config:@@default_config, &block)
+    c = chart(name, start_date, end_date, config: config, &block)
     File.open("#{filename}.svg", "w") { |f| f.write(c.render) }
   end
 
