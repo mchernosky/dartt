@@ -2,8 +2,11 @@ module Dartt
   class Milestone
     attr_reader :name
 
-    def initialize(name, date=nil, start_of: nil)
+    def initialize(name, date=nil, start_of: nil, tag: nil)
       @milestone = Task.new(name).start(date).duration(1)
+      unless tag.nil?
+        @milestone = @milestone.tag(tag)
+      end
     end
 
     def ==(other)
@@ -24,6 +27,10 @@ module Dartt
 
     def end
       date
+    end
+
+    def tag
+      @milestone.tag
     end
   end
 end

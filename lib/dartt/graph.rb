@@ -34,8 +34,18 @@ module Dartt
       @sections << {:name => name, :start_row => start_row, :end_row => end_row}
     end
 
-    def get_config(tag)
+    def get_task_config(tag)
       config = @config[:task]
+      unless tag.nil?
+        if @config[:tags].include?(tag)
+          config = config.merge(@config[:tags][tag])
+        end
+      end
+      config
+    end
+
+    def get_milestone_config(tag)
+      config = @config[:milestone]
       unless tag.nil?
         if @config[:tags].include?(tag)
           config = config.merge(@config[:tags][tag])
@@ -98,9 +108,9 @@ module Dartt
       @elements.each_with_index do |e, i|
         if e.is_a?(Task)
           duration = (e.end - e.start).to_i + 1
-          draw_task(e.name, i, (e.start - @start_date + 1).to_i, duration, get_config(e.tag))
+          draw_task(e.name, i, (e.start - @start_date + 1).to_i, duration, get_task_config(e.tag))
         elsif e.is_a?(Milestone)
-          draw_milestone(e.name, i, (e.date - @start_date + 1).to_i)
+          draw_milestone(e.name, i, (e.date - @start_date + 1).to_i, get_milestone_config(e.tag))
         end
       end
 
@@ -170,8 +180,8 @@ module Dartt
       end
     end
 
-    def draw_milestone(name, row, day)
-      milestone_height = @config[:milestone][:height] - 2*@config[:milestone][:vertical_margin]
+    def draw_milestone(name, row, day, config=@config[:milestone])
+      milestone_height = config[:height] - 2*config[:vertical_margin]
       milestone_side = Math.sqrt((milestone_height*milestone_height)/2)
 
       section_width_px = get_section_width
@@ -184,16 +194,16 @@ module Dartt
 
       # Draw the milestone and rotate it to form a diamond.
       @svg.rect x:x, y:y, width:milestone_side, height:milestone_side,
-                fill: @config[:milestone][:fill],
-                stroke: @config[:milestone][:line],
-                stroke_width: @config[:milestone][:line_weight],
+                fill: config[:fill],
+                stroke: config[:line],
+                stroke_width: config[:line_weight],
                 transform: "rotate (45 #{milestone_center_x} #{milestone_center_y})",
-                rx: @config[:milestone][:rounding]
+                rx: config[:rounding]
 
       @svg.text name, x: x + milestone_height, y: milestone_center_y + 1,
                 text_anchor: 'start',
-                font_size: @config[:task][:font_size],
-                fill: @config[:milestone][:font_color]
+                font_size: config[:font_size],
+                fill: config[:font_color]
     end
   end
 end

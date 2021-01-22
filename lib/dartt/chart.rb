@@ -47,7 +47,7 @@ module Dartt
       unless start_of.nil?
         date = start_of - 1
       end
-      new_milestone = Milestone.new(name, date)
+      new_milestone = Milestone.new(name, date, tag: tag)
       @graph.add(new_milestone)
       new_milestone
     end
