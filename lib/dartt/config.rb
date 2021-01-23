@@ -2,10 +2,14 @@ require 'pp'
 
 module Dartt
 
-  TopConfig = Struct.new(:font)
+  Config = Struct.new(:font) do
+    def initialize(font: Font.new(20))
+      super (font)
+    end
+  end
   Font = Struct.new(:size)
 
-  class Config
+  class CustomConfigBuilder
     def initialize (default_config=nil)
       if default_config.nil?
         @config = TopConfig.new(Font.new(20))
