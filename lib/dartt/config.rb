@@ -11,5 +11,10 @@ module Dartt
     def font_size
       @font_size
     end
+    def font
+      def size
+        20
+      end
+    end
   end
 end
