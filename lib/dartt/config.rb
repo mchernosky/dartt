@@ -1,20 +1,21 @@
+require 'pp'
 
 module Dartt
+
+  TopConfig = Struct.new(:font)
+  Font = Struct.new(:size)
+
   class Config
     def initialize (default_config=nil)
       if default_config.nil?
-        @font_size = 20
+        @config = TopConfig.new(Font.new(20))
       else
-        @font_size = default_config[:font_size]
+        @config = TopConfig.new(Font.new(default_config[:font][:size]))
       end
     end
-    def font_size
-      @font_size
-    end
+
     def font
-      def size
-        20
-      end
+      @config.font
     end
   end
 end
