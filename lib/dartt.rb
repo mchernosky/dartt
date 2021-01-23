@@ -31,7 +31,7 @@ module Dartt
     end
   end
 
-  @@default_config = {
+   @@default_config = {
       :width => 1920,
       :height => 1080,
       :title => {
