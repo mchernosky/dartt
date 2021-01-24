@@ -3,6 +3,7 @@ require 'dartt/chart'
 require 'dartt/graph'
 require 'dartt/task'
 require 'dartt/milestone'
+require 'dartt/config'
 
 module Dartt
   class TaskOverconstrained < StandardError
