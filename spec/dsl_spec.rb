@@ -161,8 +161,11 @@ RSpec.describe Dartt::Chart do
     end
   end
 
-  it "can add a custom tag" do
+  it "can add custom tags and configuration" do
     custom_config = {
+        :title => {
+            :font_color => "pink"
+        },
         :tags => {
             :red => {
                 :font_color => "white",

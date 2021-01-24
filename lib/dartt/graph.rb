@@ -20,7 +20,7 @@ module Dartt
       if config == Dartt.default_config
         @config = Dartt.default_config
       else
-        @config = recursive_merge(Dartt.default_config, config)
+        @config = Config.build(config)
       end
 
 
