@@ -142,7 +142,110 @@ If a task is defined with a date that falls on a weekend, it is moved to the nex
 
 ### Custom configuration
 
-TODO
+Individual configuration settings can be overriden by providing a custom configuration hash.
+Only the settings that you want to change need to be included.
+
+For example, change the color of title like this:
+
+```ruby
+custom_config = {
+  title => {
+    :font_color => "pink"
+  }
+}
+
+Dartt.svg "Title", Date.new(2021, 1, 4), Date.new(2021, 3, 29), "filename", config: custom_config do
+ # Tasks and milestones go here.
+end
+```
+
+### Custom styling with tags
+
+Create custom tags by adding them to a custom configuration:
+
+```ruby
+custom_config = {
+  :tags => {
+    :red => {
+      :font_color => "white",
+      :fill => "red",
+      :line => "black",
+    },
+    :blue => {
+      :font_color => "blue",
+      :fill => "white",
+      :line => "blue",
+    }
+  }
+}
+```
+
+Then you can tag a task or milestone and it will get the tag-specific styling:
+
+```ruby
+t = task "A Task", :red, start: Date.new(2021, 1, 4), days: 20
+milestone "Task Complete", :blue, after: t
+```
+
+### Default configuration
+
+This is the default configuration, and each of these can be overridden.
+
+```ruby
+{
+  :width => 1920,
+  :height => 1080,
+  :title => {
+    :height => 108,
+    :font_color => "#003470",
+  },
+  :section => {
+    :width => 300,
+    :margin => 20,
+    :color_1 => '#FFFDA2',
+    :color_1_opacity => 0.4,
+    :color_2 => 'white',
+    :color_2_opacity => 0.0,
+  },
+  :axis => {
+    :height => 80,
+    :week_height => 32,
+    :fill_color => '#D7D7D7',
+    :line_color => 'white',
+    :line_weight => 2,
+    :weekend_color => '#E0E0E0',
+    :grid_line_color => '#C1C1C1',
+  },
+  :task => {
+    :height => 40,
+    :vertical_margin => 3,
+    :horizontal_margin => 0,
+    :rounding => 5,
+    :font_size => 20,
+    :font_color => "#003470",
+    :fill => "#77B7FF",
+    :line => "#0D57AB",
+    :line_weight => 2,
+  },
+  :milestone => {
+    :height => 40,
+    :vertical_margin => 2,
+    :rounding => 4,
+    :font_size => 20,
+    :font_color => "#003470",
+    :fill => "#77B7FF",
+    :line => "#0D57AB",
+    :line_weight => 2,
+  },
+  :tags => {
+    :done => {
+      :font_color => "#505050",
+      :fill => "#d5d5d5",
+      :line => "#505050",
+    },
+  },
+}
+```
 
 ## Development
 
@@ -165,7 +268,6 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 
 ## TODO
 
-- Custom styling for custom tags.
 - Automatic chart sizing.
 - Reference chart start/end for task dates.
 - Allow dependencies on more than one task.
