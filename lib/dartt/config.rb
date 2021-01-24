@@ -1,5 +1,12 @@
 require 'pp'
 
+class ::Hash
+  def deep_merge(second)
+    merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
+    self.merge(second, &merger)
+  end
+end
+
 module Dartt
 
   module Config
@@ -8,7 +15,7 @@ module Dartt
       if custom_config.nil?
         @@default_config
       else
-        @@default_config.merge(custom_config)
+        @@default_config.deep_merge(custom_config)
       end
     end
 

@@ -19,7 +19,7 @@ RSpec.describe Dartt::Config do
     expect(c[:width]).to eq(24)
   end
 
-  it "can override the title heigth with an initializer hash" do
+  it "can override the title height with an initializer hash" do
     c = Dartt::Config.build(
         {
             :title => {
@@ -28,5 +28,27 @@ RSpec.describe Dartt::Config do
         }
     )
     expect(c[:title][:height]).to eq(500)
+  end
+
+  it "can override the title font color with an initializer hash" do
+    c = Dartt::Config.build(
+        {
+            :title => {
+                :font_color => "pink"
+            }
+        }
+    )
+    expect(c[:title][:font_color]).to eq("pink")
+  end
+
+  it "preserves the default configuration when adding a custom configuration" do
+    c = Dartt::Config.build(
+        {
+            :title => {
+                :font_color => "pink"
+            }
+        }
+    )
+    expect(c[:title]).to include(:height)
   end
 end
