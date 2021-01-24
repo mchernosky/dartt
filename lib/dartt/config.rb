@@ -4,8 +4,12 @@ module Dartt
 
   module Config
 
-    def build
-      @@default_config
+    def build(custom_config=nil)
+      if custom_config.nil?
+        @@default_config
+      else
+        @@default_config.merge(custom_config)
+      end
     end
 
     module_function :build

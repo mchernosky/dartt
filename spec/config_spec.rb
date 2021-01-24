@@ -10,9 +10,12 @@ RSpec.describe Dartt::Config do
     expect(c[:width]).to be_an(Integer)
   end
 
-  # it "can set a default size with an initializer hash" do
-  #   c = Dartt::Config.new
-  #   c.font.size = 24
-  #   expect(c.font.size).to eq(24)
-  # end
+  it "the default width can be overridden with an initializer hash" do
+    c = Dartt::Config.build(
+        {
+            :width => 24
+        }
+    )
+    expect(c[:width]).to eq(24)
+  end
 end
