@@ -58,6 +58,13 @@ RSpec.describe Dartt::Chart do
     expect(c).to include(Dartt::Task.new("A Task").start(Date.new(2021, 1, 6)).duration(3))
   end
 
+  it "can add a task with a start date and duration in weeks" do
+    c = Dartt.chart "The Schedule" do
+      task "A Task", start: Date.new(2021, 6, 7), weeks: 1
+    end
+    expect(c).to include(Dartt::Task.new("A Task").start(Date.new(2021, 6, 7)).end(Date.new(2021, 6, 11)))
+  end
+
   it "can add a task with a start and end date" do
     c = Dartt.chart "The Schedule" do
       task "A Task", start: Date.new(2021, 1, 6), end: Date.new(2021, 1, 8)

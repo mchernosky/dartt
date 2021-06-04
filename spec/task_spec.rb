@@ -132,6 +132,30 @@ RSpec.describe Dartt::Task do
       expect(task.end).to eq(Date.new(2020,12,10))
     end
 
+    it "can set the duration in weeks" do
+      task = Dartt::Task.new("My Task")
+                 .start(Date.new(2021,6,7))
+                 .duration_weeks(1)
+
+      expect(task.end).to eq(Date.new(2021,6,11))
+    end
+
+    it "can handle multiple week durations" do
+      task = Dartt::Task.new("My Task")
+                 .start(Date.new(2021,6,7))
+                 .duration_weeks(2)
+
+      expect(task.end).to eq(Date.new(2021,6,18))
+    end
+
+    it "can handle a half week duration" do
+      task = Dartt::Task.new("My Task")
+                 .start(Date.new(2021,6,7))
+                 .duration_weeks(0.5)
+
+      expect(task.end).to eq(Date.new(2021,6,9))
+    end
+
     it "can be defined by a start date and end date" do
       task = Dartt::Task.new("My Task")
           .start(Date.new(2020,12,8))

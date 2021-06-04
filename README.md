@@ -268,6 +268,7 @@ Everyone interacting in the Dartt project's codebases, issue trackers, chat room
 
 ## TODO
 
+- If you start a task before another one, draw it above that one.
 - Automatic chart sizing.
 - Reference chart start/end for task dates.
 - Allow dependencies on more than one task.

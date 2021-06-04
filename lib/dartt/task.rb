@@ -54,6 +54,13 @@ module Dartt
       end
     end
 
+    WORK_DAYS_PER_WEEK = 5
+
+    def duration_weeks(weeks = nil)
+      # Convert from weeks to days. Round up to the nearest integer day if necessary.
+      duration((weeks * WORK_DAYS_PER_WEEK).round(0).to_i)
+    end
+
     private
 
     def set_end(date)
